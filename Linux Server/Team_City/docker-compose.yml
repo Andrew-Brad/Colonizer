@@ -1,5 +1,10 @@
 version: '2'
 
+#https://docs.docker.com/compose/compose-file/#volumes-for-services-swarms-and-stack-files
+#In the absence of having named volumes with specified sources, Docker creates an anonymous volume for each task backing a service. Anonymous volumes do not persist after the associated containers are removed.
+volumes:
+  volume-ab-teamcity-compose:
+
 services:
     teamcity:
         image: jetbrains/teamcity-server:10.0.1
