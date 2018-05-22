@@ -8,7 +8,8 @@ services:
             - ./data/server/logs:/opt/teamcity/logs
         ports:
             - 8111:8111
-        container_name: teamcity-server        
+        container_name: teamcity-server
+        restart: always         
     teamcity-agent:
         image: jetbrains/teamcity-agent:10.0.1
         volumes:
@@ -16,3 +17,4 @@ services:
         environment:
             SERVER_URL: http://teamcity:8111
         container_name: teamcity-agent
+        restart: always
