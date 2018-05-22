@@ -1,0 +1,21 @@
+version: '2'
+
+volumes:
+  volume-ab-postgres-compose:
+
+services:
+  postgres-db:
+    image: postgres:9.6.9-alpine
+    restart: always
+    container_name: ab-postgres-docker-compose
+    ports:
+      - "5432:5432"
+    environment:
+      - DEBUG=false
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      #- DB_USER=
+      #- DB_PASS=
+      #- DB_NAME=
+      #- DB_TEMPLATE=
+    volumes: 
+      - volume-ab-postgres-compose:/var/lib/postgresql/data/pgdata
