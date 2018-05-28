@@ -26,10 +26,10 @@ services:
         restart: always
         depends_on: 
             - teamcity
-        command:
-            - /bin/sh
-            - -c
+        #command:
+            #- /bin/sh
+            #- -c
             #https://github.com/docker-library/redmine/issues/52
-            - curl "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=45894" --output /data/teamcity_agent/conf/plugins/dotnet-cli.zip
-        stdin_open: true
-        tty: true
+            #- curl "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=45894" --output /data/teamcity_agent/conf/plugins/dotnet-cli.zip
+        #stdin_open: true
+        #tty: true
