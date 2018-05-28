@@ -7,17 +7,17 @@ volumes:
 
 services:
     teamcity:
-        image: jetbrains/teamcity-server:10.0.1
+        image: jetbrains/teamcity-server:2017.2.4
         volumes:
             - volume-ab-teamcity-compose:/data/teamcity_server/datadir
             - volume-ab-teamcity-compose:/opt/teamcity/logs
         ports:
             - 8111:8111
         container_name: teamcity-server
-        restart: always    
+        restart: always
              
     teamcity-agent:
-        image: jetbrains/teamcity-agent:10.0.1
+        image: jetbrains/teamcity-agent:2017.2.4
         volumes:
             - volume-ab-teamcity-compose:/data/teamcity_agent/conf
         environment:
@@ -25,11 +25,4 @@ services:
         container_name: teamcity-agent
         restart: always
         depends_on: 
-            - teamcity
-        #command:
-            #- /bin/sh
-            #- -c
-            #https://github.com/docker-library/redmine/issues/52
-            #- curl "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=45894" --output /data/teamcity_agent/conf/plugins/dotnet-cli.zip
-        #stdin_open: true
-        #tty: true
+            - teamcity        
