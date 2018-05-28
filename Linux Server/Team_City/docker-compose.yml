@@ -31,3 +31,4 @@ services:
             - -c
             #https://github.com/docker-library/redmine/issues/52
             - curl "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=45894" --output /data/teamcity_agent/conf/plugins/dotnet-cli.zip
+        tty: true
