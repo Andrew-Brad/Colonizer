@@ -1,0 +1,59 @@
+# https://chocolatey.org/install
+# Open up Powershell as Admin
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+#Package Installs
+-? (show help)
+-v (verbose loggin)
+-y (auto accept prompts and license agreements)
+
+
+#maybe this or use the other install I have
+choco install winrar -y
+
+#Gotta Have It
+choco install googlechrome -y
+choco install vlc -y
+choco install dotnet4.5 -y
+choco install vcredist2010 -y
+choco install dropbox -y
+choco install putty -y
+choco install rufus -y
+choco install winscp -y
+choco install cmder -y
+choco install nordvpn -y
+
+# Dev Tools
+choco install vscode -y
+choco install vscode-powershell -y
+choco install vscode-csharp -y
+choco install vscode-csharpextensions -y
+choco install vscode-icons -y
+choco install vscode-docker -y
+choco install vscode-gitattributes -y
+choco install sourcetree -y
+#choco install dotnet4.5.1
+choco install vcredist2012 -y
+choco install python -y
+choco install deluge -y
+choco install postgresql -y
+choco install dbeaver -y
+choco install fiddler -y
+
+# System/Monitoring
+choco install cpu-z -y
+
+
+
+# When complete, this will refresh your PATH and environment variables
+refreshenv
+
+#Haven't tried yet
+choco install azure-cli -y
+choco install awscli -y
+
+
+#Software without choco
+NZXT Cam
+Pulover's Macro Creator (GUI over AHK)
+SWG
