@@ -40,9 +40,9 @@ choco install postgresql -y
 choco install dbeaver -y
 choco install fiddler -y
 
-# System/Monitoring
+# System/Monitoring/Backup
 choco install cpu-z -y
-
+choco install veeam-agent -y
 
 
 # When complete, this will refresh your PATH and environment variables
