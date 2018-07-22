@@ -7,7 +7,7 @@ volumes:
 
 services:
     teamcity:
-        image: jetbrains/teamcity-server:2017.2.4
+        image: jetbrains/teamcity-server:2018.1
         volumes:
             - volume-ab-teamcity-compose:/data/teamcity_server/datadir
             - volume-ab-teamcity-compose:/opt/teamcity/logs
@@ -17,7 +17,7 @@ services:
         restart: always
              
     teamcity-agent:
-        image: jetbrains/teamcity-agent:2017.2.4
+        image: jetbrains/teamcity-agent:2018.1
         volumes:
             - volume-ab-teamcity-compose:/data/teamcity_agent/conf
         environment:
