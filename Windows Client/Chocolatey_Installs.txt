@@ -3,12 +3,12 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 #Package Installs
--? (show help)
--v (verbose loggin)
--y (auto accept prompts and license agreements)
+# -? (show help)
+# -v (verbose loggin)
+# -y (auto accept prompts and license agreements)
 
 
-#maybe this or use the other install I have
+# Maybe this or use the other install I have
 choco install winrar -y
 
 #Gotta Have It
@@ -39,6 +39,7 @@ choco install deluge -y
 choco install postgresql -y
 choco install dbeaver -y
 choco install fiddler -y
+choco install nodejs -y
 
 # System/Monitoring/Backup
 choco install cpu-z -y
