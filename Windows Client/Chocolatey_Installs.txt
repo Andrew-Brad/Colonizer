@@ -4,7 +4,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 # Package Installs
 # -? (show help)
-# -v (verbose loggin)
+# -v (verbose logging)
 # -y (auto accept prompts and license agreements)
 
 
