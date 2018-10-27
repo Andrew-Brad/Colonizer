@@ -55,11 +55,11 @@ refreshenv
 git config --global core.editor "code --wait"
 # To view/edit git config in Code git config --global -e
 
-#Haven't tried yet
+# Haven't tried yet
 choco install azure-cli -y
 choco install awscli -y
 
 
-#Software without choco
+# Software without choco
 NZXT Cam
 Pulover's Macro Creator (GUI over AHK)
