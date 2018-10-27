@@ -7,7 +7,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # -v (verbose logging)
 # -y (auto accept prompts and license agreements)
 
-
 # Maybe this or use the other install I have
 choco install winrar -y
 
@@ -53,6 +52,7 @@ refreshenv
 
 # Global configurations
 git config --global core.editor "code --wait"
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # To view/edit git config in Code git config --global -e
 
 # Haven't tried yet
