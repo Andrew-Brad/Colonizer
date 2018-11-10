@@ -50,12 +50,6 @@ choco install veeam-agent -y
 # When complete, this will refresh your PATH and environment variables
 refreshenv
 
-# Global configurations
-git config --global core.editor "code --wait"
-git config --global --add fetch.prune true
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# To view/edit git config in Code git config --global -e
-
 # Haven't tried yet
 choco install azure-cli -y
 choco install awscli -y
