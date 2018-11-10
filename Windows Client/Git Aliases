@@ -6,4 +6,8 @@ git config --global --add fetch.prune true
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.la "config --get-regexp ^alias\."
 
+# Delete all local branches except for current one
+git branch | ? {$_[0] -ne '*'} | % {$_.trim()} | % {git branch -D $_}
+git branch | grep -v "master" | xargs git branch -D
+
 # To view/edit git config in Code git config --global -e
