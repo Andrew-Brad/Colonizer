@@ -58,3 +58,5 @@ choco install awscli -y
 # Software without choco
 NZXT Cam
 Pulover's Macro Creator (GUI over AHK)
+
+# Then map external drives for A, B, and C
