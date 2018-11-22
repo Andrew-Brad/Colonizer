@@ -32,6 +32,7 @@ choco install postgresql -y
 choco install dbeaver -y
 choco install fiddler -y
 choco install nodejs -y
+choco install python -y
 
 # VS Code and Extensions
 choco install vscode -y
