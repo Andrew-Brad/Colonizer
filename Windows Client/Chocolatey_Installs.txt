@@ -33,6 +33,7 @@ choco install dbeaver -y
 choco install fiddler -y
 choco install nodejs -y
 choco install python -y
+choco install pip -y
 
 # VS Code and Extensions
 choco install vscode -y
@@ -48,7 +49,7 @@ choco install cpu-z -y
 choco install veeam-agent -y
 
 
-# When complete, this will refresh your PATH and environment variables
+# When complete, this will refresh your PATH and environment variables - some installs require a hard restart of terminal
 refreshenv
 
 # Haven't tried yet
