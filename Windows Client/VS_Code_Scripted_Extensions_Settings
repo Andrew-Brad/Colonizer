@@ -1,0 +1,21 @@
+# Reference:
+https://stackoverflow.com/questions/35773299/how-can-you-export-vs-code-extension-list
+
+code --list-extensions | xargs -L 1 echo code --install-extension
+
+
+
+# And to install them, run the output:
+code --install-extension DotJoshJohnson.xml
+code --install-extension eriklynd.json-tools
+code --install-extension hashhar.gitattributes
+code --install-extension jchannon.csharpextensions
+code --install-extension lextudio.restructuredtext
+code --install-extension ms-azure-devops.azure-pipelines
+code --install-extension ms-python.python
+code --install-extension ms-vscode.csharp
+code --install-extension ms-vscode.PowerShell
+code --install-extension ms-vsts.team
+code --install-extension PeterJausovec.vscode-docker
+code --install-extension redhat.vscode-yaml
+code --install-extension robertohuertasm.vscode-icons
