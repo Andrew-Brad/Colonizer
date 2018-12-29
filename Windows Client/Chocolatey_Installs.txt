@@ -61,5 +61,7 @@ choco install awscli -y
 # Software without choco
 NZXT Cam
 Pulover's Macro Creator (GUI over AHK)
+Avior 7000 mouse software (import settings profile in this repo)
+https://support.mionix.net/hc/en-us/articles/214396866-Avior-7000-Software-v1-21
 
 # Then map external drives for A, B, and C
