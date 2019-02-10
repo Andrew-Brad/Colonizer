@@ -49,6 +49,8 @@ choco install vscode-gitattributes -y
 choco install cpu-z -y
 choco install veeam-agent -y
 
+# Fun Stuff
+choco install teamviewer -y
 
 # When complete, this will refresh your PATH and environment variables - some installs require a hard restart of terminal
 refreshenv
