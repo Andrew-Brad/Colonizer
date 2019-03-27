@@ -1,1 +1,15 @@
+az login
+
+
 az account list
+az account show
+az account set --subscription
+
+
+╦═╗┌─┐┌─┐┌─┐┬ ┬┬─┐┌─┐┌─┐  ╔═╗┬─┐┌─┐┬ ┬┌─┐┌─┐  
+╠╦╝├┤ └─┐│ ││ │├┬┘│  ├┤   ║ ╦├┬┘│ ││ │├─┘└─┐  
+╩╚═└─┘└─┘└─┘└─┘┴└─└─┘└─┘  ╚═╝┴└─└─┘└─┘┴  └─┘  
+az group delete --no-wait --yes -n "name_of_resource_group"
+
+
+
