@@ -34,7 +34,10 @@ choco install fiddler -y
 choco install nodejs -y
 choco install python -y
 choco install pip -y
+choco install terraform -y
 pip install recommonmark sphinx
+npm install -g artillery
+
 
 # VS Code and Extensions
 choco install vscode -y
