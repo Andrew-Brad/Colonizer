@@ -7,9 +7,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # -v (verbose logging)
 # -y (auto accept prompts and license agreements)
 
-# Maybe this or use the other install I have
-choco install winrar -y
-
 # Gotta Have It
 choco install googlechrome -y
 choco install vlc -y
@@ -38,8 +35,7 @@ choco install terraform -y
 pip install recommonmark sphinx
 npm install -g artillery
 
-
-# VS Code and Extensions
+# VS Code and Extensions - extensions json file probably a better source for these
 choco install vscode -y
 choco install vscode-powershell -y
 choco install vscode-csharp -y
@@ -51,6 +47,8 @@ choco install vscode-gitattributes -y
 # System/Monitoring/Backup
 choco install cpu-z -y
 choco install veeam-agent -y
+choco install 7zip.install -y
+choco install winrar -y
 
 # Fun Stuff
 choco install teamviewer -y
