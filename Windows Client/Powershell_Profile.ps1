@@ -1,5 +1,4 @@
-message = "Profile loaded."
-Write-Output message
+Echo "Profile loaded at $profile.  Type notepad (dollar)profile to edit."
 
 Set-Alias -Name tf -Value terraform
 
