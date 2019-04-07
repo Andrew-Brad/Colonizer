@@ -20,6 +20,8 @@ choco install cmder -y
 choco install nordvpn -y
 
 # Dev Tools
+choco install dotnetcore-sdk -y
+choco install ravendb -y
 choco install sourcetree -y
 #choco install dotnet4.5.1
 choco install vcredist2012 -y
