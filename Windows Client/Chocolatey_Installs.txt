@@ -54,6 +54,7 @@ choco install winrar -y
 
 # Fun Stuff
 choco install teamviewer -y
+choco install licecap -y
 
 # When complete, this will refresh your PATH and environment variables - some installs require a hard restart of terminal
 refreshenv
