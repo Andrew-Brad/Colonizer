@@ -14,7 +14,7 @@ choco install dotnet4.5 -y
 choco install vcredist2010 -y
 choco install dropbox -y
 choco install putty -y
-choco install rufus -y
+choco install etcher -y
 choco install winscp -y
 choco install cmder -y
 choco install nordvpn -y
