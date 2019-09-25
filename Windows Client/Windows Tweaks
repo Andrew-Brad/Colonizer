@@ -8,3 +8,5 @@ Get-DnsClientServerAddress
 # Pick the correct name and/or index if you need to:
 Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses "1.1.1.1","1.0.0.1"
 
+# Enable WSL
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
