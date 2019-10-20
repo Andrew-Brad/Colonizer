@@ -22,11 +22,14 @@ choco install nordvpn -y
 # Dev Tools
 choco install dotnetcore-sdk -y
 choco install ravendb -y
+choco install docker-desktop -y
 choco install sourcetree -y
-#choco install dotnet4.5.1
+choco install git.install -y
+choco install azure-cli -y
 choco install vcredist2012 -y
 choco install python -y
 choco install deluge -y
+choco install poshgit -y
 choco install postgresql -y
 choco install dbeaver -y
 choco install fiddler -y
@@ -60,7 +63,6 @@ choco install licecap -y
 refreshenv
 
 # Haven't tried yet
-choco install azure-cli -y
 choco install awscli -y
 
 
