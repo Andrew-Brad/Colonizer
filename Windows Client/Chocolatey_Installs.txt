@@ -20,6 +20,7 @@ choco install cmder -y
 choco install nordvpn -y
 
 # Dev Tools
+choco install vscode -y
 choco install dotnetcore-sdk -y
 choco install ravendb -y
 choco install docker-desktop -y
@@ -39,15 +40,6 @@ choco install pip -y
 choco install terraform -y
 pip install recommonmark sphinx
 npm install -g artillery
-
-# VS Code and Extensions - extensions json file probably a better source for these
-choco install vscode -y
-choco install vscode-powershell -y
-choco install vscode-csharp -y
-choco install vscode-csharpextensions -y
-choco install vscode-icons -y
-choco install vscode-docker -y
-choco install vscode-gitattributes -y
 
 # System/Monitoring/Backup
 choco install cpu-z -y
