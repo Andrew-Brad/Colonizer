@@ -72,5 +72,7 @@
     "[json]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
     "clipboard-manager.onlyWindowFocused": false
 }
