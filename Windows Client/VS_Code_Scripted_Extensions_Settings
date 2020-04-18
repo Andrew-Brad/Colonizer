@@ -18,4 +18,11 @@ code --install-extension ms-vscode.PowerShell
 code --install-extension ms-vsts.team
 code --install-extension PeterJausovec.vscode-docker
 code --install-extension redhat.vscode-yaml
-code --install-extension robertohuertasm.vscode-icons
+# code --install-extension robertohuertasm.vscode-icons
+code --install-extension EditorConfig.EditorConfig
+code --install-extension sidthesloth.html5-boilerplate
+code --install-extension monokai.theme-monokai-pro-vscode
+code --install-extension mauve.terraform johnpapa.vscode-peacock
+code --install-extension donjayamanne.githistory
+code --install-extension ms-azure-devops.azure-pipelines
+code --install-extension eridem.vscode-nupkg
