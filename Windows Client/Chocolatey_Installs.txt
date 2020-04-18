@@ -23,7 +23,7 @@ choco install passwordsafe -y
 
 # Dev Tools
 choco install vscode -y
-choco install dotnetcore-sdk -y
+ # choco install dotnetcore-sdk -y # Visual Studio managed
 choco install ravendb -y
 choco install docker-desktop -y
 choco install sourcetree -y
