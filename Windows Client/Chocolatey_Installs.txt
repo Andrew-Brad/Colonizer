@@ -18,6 +18,7 @@ choco install etcher -y
 choco install winscp -y
 choco install cmder -y
 choco install nordvpn -y
+choco install rufus -y
 
 # Dev Tools
 choco install vscode -y
