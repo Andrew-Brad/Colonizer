@@ -9,6 +9,11 @@
 ;git config --list --show-origin
 ;git config --global -e
 
+[user]
+	#signingkey = ...
+	email = zep519@yahoo.com
+	name = Andrew Brad
+
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -172,8 +177,3 @@
 ; [url "git://gist.github.com/"]
 
 ; 	insteadOf = "gist:"
-
-[user]
-	#signingkey = ...
-	email = zep519@yahoo.com
-	name = Andrew Brad
