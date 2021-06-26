@@ -7,7 +7,8 @@ macOS ~/.vscode/extensions
 Linux ~/.vscode/extensions
 
 code --list-extensions
-code --install-extension <extenion id or file path>
+code --install-extension <extension id or file path>
+code --uninstall-extension <extension id or file path>
 
 My current list:
 
@@ -44,3 +45,9 @@ code --install-extension sidthesloth.html5-boilerplate
 code --install-extension tintoy.msbuild-project-tools
 code --install-extension vscode-icons-team.vscode-icons
 code --install-extension monokai.theme-monokai-pro-vscode
+
+
+# Reference:
+https://stackoverflow.com/questions/35773299/how-can-you-export-vs-code-extension-list
+
+code --list-extensions | xargs -L 1 echo code --install-extension
