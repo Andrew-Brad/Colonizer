@@ -7,7 +7,8 @@ macOS ~/.vscode/extensions
 Linux ~/.vscode/extensions
 
 code --list-extensions
-code --install-extension <extenion id or file path>
+code --install-extension <extension id or file path>
+code --uninstall-extension <extension id or file path>
 
 My current list:
 
