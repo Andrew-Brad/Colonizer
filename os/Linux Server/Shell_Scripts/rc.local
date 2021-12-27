@@ -1,0 +1,4 @@
+#!/bin/sh -e
+sudo mkdir -p /media/redexternal
+sudo mount /dev/sdb2 /media/redexternal
+exit 0
