@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-# TODO: Move in my git aliases
+# Copy this file to ~/.bash_aliases
+# cp "./os/Linux Server/.bash_aliases" ~
+
+# Git aliases
+alias g="git status"
+alias gitgud="git add -A && git commit --amend --no-edit && git push -f;"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -25,6 +30,9 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
+
+# Clear
+alias cl="clear"
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
