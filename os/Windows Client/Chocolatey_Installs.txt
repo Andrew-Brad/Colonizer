@@ -8,7 +8,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # -y (auto accept prompts and license agreements)
 
 # Gotta Have It
-choco install googlechrome -y
+choco install firefox -y
 choco install vlc -y
 choco install dotnet4.5 -y
 choco install vcredist2010 -y
@@ -20,6 +20,7 @@ choco install winscp -y
 choco install nordvpn -y
 choco install rufus -y
 choco install passwordsafe -y
+choco install deluge -y
 
 # Dev Tools
 choco install vscode -y
@@ -31,7 +32,6 @@ choco install git.install -y
 choco install azure-cli -y
 choco install vcredist2012 -y
 choco install python -y
-choco install deluge -y
 choco install poshgit -y
 choco install postgresql -y
 choco install dbeaver -y
@@ -48,6 +48,8 @@ choco install cpu-z -y
 choco install veeam-agent -y
 choco install 7zip.install -y
 choco install winrar -y
+choco install hyperx-ngenuity -y # HyperX's accessory lighting tool
+choco install nzxt-cam -y
 
 # Fun Stuff
 choco install teamviewer -y
@@ -61,7 +63,6 @@ choco install awscli -y
 
 
 # Software without choco
-NZXT Cam
 Pulover's Macro Creator (GUI over AHK)
 Avior 7000 mouse software (import settings profile in this repo)
 https://support.mionix.net/hc/en-us/articles/214396866-Avior-7000-Software-v1-21
