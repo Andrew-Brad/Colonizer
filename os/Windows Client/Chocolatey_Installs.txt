@@ -10,7 +10,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # Gotta Have It
 choco install firefox -y
 choco install vlc -y
-choco install dotnet4.5 -y
+# choco install dotnet4.5 -y
 choco install vcredist2010 -y
 choco install dropbox -y
 choco install putty -y
@@ -19,14 +19,15 @@ choco install winscp -y
 # choco install cmder -y
 choco install nordvpn -y
 choco install rufus -y
-choco install passwordsafe -y
+# choco install passwordsafe -y
 choco install deluge -y
 
 # Dev Tools
 choco install vscode -y
  # choco install dotnetcore-sdk -y # Visual Studio managed
 choco install ravendb -y
-choco install docker-desktop -y
+# choco install docker-desktop -y
+choco install docker-cli -y
 choco install sourcetree -y
 choco install git.install -y
 choco install azure-cli -y
