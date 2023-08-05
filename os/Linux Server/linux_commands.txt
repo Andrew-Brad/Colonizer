@@ -1,0 +1,55 @@
+# update one-liner
+sudo apt update && sudo apt upgrade -y
+
+# discover all storage devices attached to your system
+lsblk 
+
+# similar to above, but shows much more data and might require sudo
+sudo fdisk -l
+
+# fdisk requires root privileges in most cases. 
+# If you don't have root privileges, you can list storage devices files beginning with sd in the /dev directory : this should give you enough information:
+ls -l /dev/sd*
+
+# list all mount points, and storage capacity
+df -h
+
+# to unmount or 'detach' a device
+umount /dev/sdb1
+
+# before mounting these blindly, verify the device using above commands
+sudo mount /dev/sdb1 /media/yourfolder
+
+# show files marked deleted that are still locked by some process
+sudo lsof / | grep deleted
+
+# top 5 biggest directories in the home folder, ignore permission denied as some of those are in system folders and such
+du -a /home | sort -n -r | head -n 5
+du -a . | sort -n -r | head -n 5
+du -hs * | sort -rh | head -5
+
+# magic command to know where all your disk space is being allocated, prettier disk size printing
+sudo du -hsx /* | sort -rh | head -n 40
+
+# rsync is better than cp  <source> <destination>
+# Copy a Directory and All Subdirectories Locally (Copy Files and Directories Recursively)
+# -a archive flag: The archive mode behaves like the recursive mode (-r) but keeps all file permissions, symbolic links, file ownership, etc.
+# -v combined with --progress shows a more detailed progress output
+rsync -av --progress /media/sourcefolder/PLEX /media/destinationfolder/PLEX
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
