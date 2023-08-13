@@ -1,0 +1,9 @@
+# some Pi config if you want to set misc settings
+sudo raspi-config
+
+# https://github.com/AdguardTeam/AdGuardHome#automated-install-linuxunixmacosfreebsdopenbsd
+curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
+
+
+
+# todo: download bash aliases
