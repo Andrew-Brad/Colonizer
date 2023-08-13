@@ -29,3 +29,11 @@ Walkthrough: https://youtu.be/YeF7ObTnDwc?list=PLVrjozBRY-MpxW0NXUnxoVOy-e-4GxzB
  Then curl down my copy for convenience:
 
 `curl -O https://github.com/Andrew-Brad/Colonizer/blob/master/os/Linux%20Server/prometheus.yml`
+
+## Importing Dashboards
+
+Just plug in the id of the dashboard
+
+Server/hardeware metrics: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+
+cAdvisor: https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/
