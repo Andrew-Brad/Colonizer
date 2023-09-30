@@ -42,6 +42,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# private/public ssh keys-pair
+ssh-keygen -t ecdsa -b 521
+ssh-copy-id -i .ssh/id_rsa.pub user@192.168.1.x
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
