@@ -17,7 +17,7 @@
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -55,25 +55,22 @@
     isNormalUser = true;
     description = "Warden Sharp";
     extraGroups = [ "networkmanager" "wheel" ];
-    openssh.authorizedKeys.keys = [ "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAFqE65cnhu7OjQfB1adcCa/SYalVXPbOqL991upv69AVg+zV9bidAD0hUOZeje+0fhKZog27XqsPIlw9EBLtXJB2ADm8o5Hzb6hRWVDc5Tuw2C5zio/ycIEQQkCC3JVsfkC+veIxcNKBjniuCbzBi+8A4JSkuj0KE6SK7n6z3oqHnNYiw== andrew@DESKTOP-TTHBBKN
-" ];
+    openssh.authorizedKeys.keys = [ 
+      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAFqE65cnhu7OjQfB1adcCa/SYalVXPbOqL991upv69AVg+zV9bidAD0hUOZeje+0fhKZog27XqsPIlw9EBLtXJB2ADm8o5Hzb6hRWVDc5Tuw2C5zio/ycIEQQkCC3JVsfkC+veIxcNKBjniuCbzBi+8A4JSkuj0KE6SK7n6z3oqHnNYiw== andrew@DESKTOP-TTHBBKN"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLiiu4kmxJZfrUw80pKy8lLl+oRD5l4hGWqJh0eM6j1TqvevJKe2TuZuWTbDcXWCgGSzSa5flS2HD1TesKjGCf0IU0VkUhDD725djIpvWLZZyjeMzyHIr8cXbX0t3Ijhf1KZqL0e7oIoDfFcbg0LY02EeK1ueZbLN85+Qkit35q2roSHzW1mMB6UCoLbW0kPFscbYpYAXKaUo+HyM8uFYZnbgpkyDX0fvYXwJp0GKB5ICmxeXCfzPcPSRUjktpRt+5qxQpszG1zwOBW/pG+y5eEVdR+kYoLXqIh9w7DCFHuCodt9fESVC2UTxUYeGs4wkasnroCS2OTHGQaEuIwLqNnrakoTzHMWWuait6p4Hwj4FhKefGomlJyW6tjBlGBGM/wSx9b6usSFpImuQm9g2uc00gs4dkyomaIDdmLTc0Zv5soKC5DDGhO0kzF1VXfGwMtxll8gMbXuiFd1CSAJspC7YZ+BnFrr5UsUWnP/r5q3il2DW0mR8q0p76TMw/IN8= ab@venture"
+ ];
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # VS Code Server depends on an old node version apparently?
-  nixpkgs.config.permittedInsecurePackages = [
-                "nodejs-16.20.2"
-              ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-
+   broot  
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -95,6 +92,23 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # Docker
+  virtualisation.docker.enable = true; # https://nixos.wiki/wiki/Docker
+  virtualisation.docker.enableOnBoot = true;
+  users.extraGroups.docker.members = [ "warden" ];
+  virtualisation.oci-containers.backend = "docker"; # not in the docs but needed apparently
+  virtualisation.oci-containers.containers = {
+     portainer = {
+      image = "portainer/portainer-ce:linux-amd64-2.19.1";
+      autoStart = true;
+      ports = ["9443:9443"];
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock"
+        "portainer_data:/data"
+      ];
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
