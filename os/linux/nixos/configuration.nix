@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
+      ./nano-configuration.nix
     ];
 
   # Bootloader.
@@ -70,10 +71,11 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+  # traefik
    broot
    htop
    glow # used for viewing markdown in the terminal
-   git
+   git # todo: gitconfig https://search.nixos.org/options?channel=23.05&show=programs.git.config&from=0&size=50&sort=relevance&type=packages&query=gitconfig
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
