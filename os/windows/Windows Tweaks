@@ -1,7 +1,7 @@
 # Turn off the stupid Aero shake feature:
 https://mywindowshub.com/enable-disable-aero-shake-windows-10/
 
-# Set the Ethernet interface to hit Cloudflare's DNS servers
+# If you're not self-hosting a DNS server, consider setting this box to go out to Cloudflare DNS
 # List out your interfaces
 Get-DnsClientServerAddress
 

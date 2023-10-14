@@ -70,6 +70,10 @@
 
     editor = code --wait
 
+	# required to allow 1password to surely handle ssh keys for you
+	# https://developer.1password.com/docs/ssh/get-started/#step-4-configure-your-ssh-or-git-client
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+
 	# Use custom `.gitignore` and `.gitattributes`.
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes

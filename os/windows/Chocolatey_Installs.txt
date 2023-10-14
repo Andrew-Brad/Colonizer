@@ -11,6 +11,8 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 choco install firefox -y
 choco install vlc -y
 # choco install dotnet4.5 -y
+# as of this writing, 1password8 is not on choco packages, so manual install. Copy over .gitconfig so that 1password can handle ssh
+# choco install 1password 
 choco install vcredist2010 -y
 choco install dropbox -y
 choco install putty -y
@@ -26,8 +28,6 @@ choco install deluge -y
 choco install vscode -y
  # choco install dotnetcore-sdk -y # Visual Studio managed
 choco install ravendb -y
-# choco install docker-desktop -y
-choco install docker-cli -y
 choco install sourcetree -y
 choco install git.install -y
 choco install azure-cli -y

@@ -1,3 +1,6 @@
+# Copy this file to ~/.gitignore
+# cp ./app/git/.gitignore ~
+
 # Compiled Python files
 *.pyc
 
