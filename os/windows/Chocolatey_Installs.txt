@@ -9,8 +9,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 # Gotta Have It
 choco install firefox -y
+choco install protonvpn -y
+choco install everything -y
 choco install vlc -y
-# choco install dotnet4.5 -y
 # as of this writing, 1password8 is not on choco packages, so manual install. Copy over .gitconfig so that 1password can handle ssh
 # choco install 1password 
 choco install vcredist2010 -y
@@ -21,19 +22,19 @@ choco install winscp -y
 # choco install cmder -y
 choco install nordvpn -y
 choco install rufus -y
-# choco install passwordsafe -y
 choco install deluge -y
+# choco install dotnet4.5 -y # needed?
 
 # Dev Tools
 choco install vscode -y
- # choco install dotnetcore-sdk -y # Visual Studio managed
-choco install ravendb -y
-choco install sourcetree -y
 choco install git.install -y
+choco install poshgit -y
 choco install azure-cli -y
 choco install vcredist2012 -y
+# choco install dotnetcore-sdk -y # Visual Studio managed
 choco install python -y
-choco install poshgit -y
+choco install ravendb -y
+choco install sourcetree -y
 choco install postgresql -y
 choco install dbeaver -y
 choco install fiddler -y
@@ -62,10 +63,7 @@ refreshenv
 # Haven't tried yet
 choco install awscli -y
 
-
 # Software without choco
 Pulover's Macro Creator (GUI over AHK)
 Avior 7000 mouse software (import settings profile in this repo)
 https://support.mionix.net/hc/en-us/articles/214396866-Avior-7000-Software-v1-21
-
-# Then map external drives for A, B, and C
