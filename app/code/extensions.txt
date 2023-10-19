@@ -12,32 +12,23 @@ code --uninstall-extension <extension id or file path>
 
 My current list:
 
-code --install-extension abusaidm.html-snippets
 code --install-extension agurz.markdown-latex-renderer
 code --install-extension alefragnani.Bookmarks
 code --install-extension anseki.vscode-color
-code --install-extension azemoh.one-monokai
 code --install-extension bpruitt-goddard.mermaid-markdown-syntax-highlighting
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension dbaeumer.vscode-eslint
 code --install-extension donjayamanne.githistory
 code --install-extension eridem.vscode-nupkg
-code --install-extension HookyQR.beautify
-code --install-extension humao.rest-client
 code --install-extension johnpapa.vscode-peacock
-code --install-extension mauve.terraform
 code --install-extension ms-azure-devops.azure-pipelines
-code --install-extension ms-azuretools.vscode-azureterraform
 code --install-extension ms-azuretools.vscode-docker
-code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-mssql.mssql
 code --install-extension ms-vscode.azure-account
 code --install-extension ms-vscode.azurecli
-code --install-extension ms-vscode.csharp
 code --install-extension ms-vscode.powershell
 code --install-extension ms-vscode.vs-keybindings
-code --install ms-vscode-remote.remote-ssh
-code --install-extension msazurermtools.azurerm-vscode-tools
+code --install-extension ms-vscode-remote.remote-ssh
 code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension msjsdiag.vscode-react-native
 code --install-extension redhat.vscode-yaml
@@ -45,7 +36,6 @@ code --install-extension ryu1kn.partial-diff
 code --install-extension sidthesloth.html5-boilerplate
 code --install-extension tintoy.msbuild-project-tools
 code --install-extension vscode-icons-team.vscode-icons
-code --install-extension monokai.theme-monokai-pro-vscode
 
 # Reference:
 https://stackoverflow.com/questions/35773299/how-can-you-export-vs-code-extension-list
