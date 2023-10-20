@@ -12,6 +12,7 @@ choco install firefox -y
 choco install protonvpn -y
 choco install everything -y
 choco install vlc -y
+choco install synologydrive -y
 # as of this writing, 1password8 is not on choco packages, so manual install. Copy over .gitconfig so that 1password can handle ssh
 # choco install 1password 
 choco install vcredist2010 -y
