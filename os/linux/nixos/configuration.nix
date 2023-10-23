@@ -25,7 +25,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # enable experimental feature of nix flakes
-  nix.settings.experimantal-features = [ "nix-command" "flakes" ]4
+  nix.settings.experimantal-features = [ "nix-command" "flakes" ];
 
   # Enable networking
   networking.networkmanager.enable = true;
