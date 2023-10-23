@@ -13,6 +13,7 @@ choco install protonvpn -y
 choco install everything -y
 choco install vlc -y
 choco install synologydrive -y
+choco install signal -y
 # as of this writing, 1password8 is not on choco packages, so manual install. Copy over .gitconfig so that 1password can handle ssh
 # choco install 1password 
 choco install vcredist2010 -y
@@ -20,7 +21,6 @@ choco install dropbox -y
 choco install putty -y
 choco install etcher -y
 choco install winscp -y
-# choco install cmder -y
 choco install nordvpn -y
 choco install rufus -y
 choco install deluge -y
