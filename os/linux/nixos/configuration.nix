@@ -24,6 +24,9 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # enable experimental feature of nix flakes
+  nix.settings.experimantal-features = [ "nix-command" "flakes" ]4
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -74,6 +77,9 @@
   # traefik
    broot
    htop
+   # btop
+   # tldr
+   # re
    glow # used for viewing markdown in the terminal
    git # todo: gitconfig https://search.nixos.org/options?channel=23.05&show=programs.git.config&from=0&size=50&sort=relevance&type=packages&query=gitconfig
   ];

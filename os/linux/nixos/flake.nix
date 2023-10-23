@@ -1,13 +1,43 @@
-# default putput from nix flake init
-
 {
-  description = "A very basic flake";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs }: {
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    home-manager,
+    ...
+  }: let
+    supportedSystems = [
+      "aarch64-darwin"
+      "aarch64-linux"
+      "x86_64-linux"
+      "x86_64-darwin"
+    ];
+  in
+    flake-utils.lib.eachSystem supportedSystems (
+      system: let
+        pkgs = import ./pkgs.nix nixpkgs system;
+      in {
+        formatter = pkgs.alejandra;
+
+        packages.homeConfigurations.warden = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [
+            ./home.nix
+          ];
+        };
+      }
+    );
 }
