@@ -10,7 +10,10 @@
       ./hardware-configuration.nix
       (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
       ./nano-configuration.nix
-      <home-manager/nixos>
+      # home manager requires nixos channel updates:
+      # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
+      # sudo nix-channel --update
+      <home-manager/nixos> 
     ];
 
   # Bootloader.
@@ -73,13 +76,18 @@
         pkgs.httpie
         ];
       programs.bash.enable = true;
-      
+      programs.home-manager.enable = true;   
+      home.shellAliases = {
+        g = "git";
+        "..." = "cd ../..";
+      }
+
       # The state version is required and should stay at the version you
       # originally installed.
       home.stateVersion = "23.05";
     };
   home-manager.useGlobalPkgs = true;
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
