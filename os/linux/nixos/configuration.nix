@@ -80,7 +80,7 @@
       home.shellAliases = {
         g = "git";
         "..." = "cd ../..";
-        "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix" && sudo -i nixos-rebuild switch --show-trace";
+        "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
       };
 
       # The state version is required and should stay at the version you
