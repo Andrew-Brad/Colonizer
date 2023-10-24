@@ -64,8 +64,10 @@
       "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAFqE65cnhu7OjQfB1adcCa/SYalVXPbOqL991upv69AVg+zV9bidAD0hUOZeje+0fhKZog27XqsPIlw9EBLtXJB2ADm8o5Hzb6hRWVDc5Tuw2C5zio/ycIEQQkCC3JVsfkC+veIxcNKBjniuCbzBi+8A4JSkuj0KE6SK7n6z3oqHnNYiw== andrew@DESKTOP-TTHBBKN"
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLiiu4kmxJZfrUw80pKy8lLl+oRD5l4hGWqJh0eM6j1TqvevJKe2TuZuWTbDcXWCgGSzSa5flS2HD1TesKjGCf0IU0VkUhDD725djIpvWLZZyjeMzyHIr8cXbX0t3Ijhf1KZqL0e7oIoDfFcbg0LY02EeK1ueZbLN85+Qkit35q2roSHzW1mMB6UCoLbW0kPFscbYpYAXKaUo+HyM8uFYZnbgpkyDX0fvYXwJp0GKB5ICmxeXCfzPcPSRUjktpRt+5qxQpszG1zwOBW/pG+y5eEVdR+kYoLXqIh9w7DCFHuCodt9fESVC2UTxUYeGs4wkasnroCS2OTHGQaEuIwLqNnrakoTzHMWWuait6p4Hwj4FhKefGomlJyW6tjBlGBGM/wSx9b6usSFpImuQm9g2uc00gs4dkyomaIDdmLTc0Zv5soKC5DDGhO0kzF1VXfGwMtxll8gMbXuiFd1CSAJspC7YZ+BnFrr5UsUWnP/r5q3il2DW0mR8q0p76TMw/IN8= ab@venture"
     ];
-    #packages = with pkgs; [];
-    home-manager.users.warden = { pkgs, ... }: {
+    #packages = with pkgs; []; # see home manager section
+  };
+
+  home-manager.users.warden = { pkgs, ... }: {
       home.packages = [ 
         pkgs.atool
         pkgs.httpie
@@ -76,7 +78,6 @@
       # originally installed.
       home.stateVersion = "23.05";
     };
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
