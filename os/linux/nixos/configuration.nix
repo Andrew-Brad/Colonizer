@@ -80,7 +80,7 @@
       home.shellAliases = {
         g = "git";
         "..." = "cd ../..";
-      }
+      };
 
       # The state version is required and should stay at the version you
       # originally installed.
