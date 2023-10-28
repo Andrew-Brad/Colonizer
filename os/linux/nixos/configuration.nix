@@ -4,14 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  myRepo = pkgs.fetchFromGitHub {
-    owner = "andrew-brad";
-    repo = "Colonizer";
-    rev = "master";
-    sha256 = "34B3C09A93576A1B7A0AD5999CFD379CCFE66681FE17859C3E184197FBD158F8";
-  };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -21,8 +13,7 @@ in
       # home manager requires nixos channel updates:
       # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
       # sudo nix-channel --update
-      <home-manager/nixos>
-      "${myRepo}/os/linux/.bash_aliases"
+      <home-manager/nixos> 
     ];
 
   # Bootloader.
