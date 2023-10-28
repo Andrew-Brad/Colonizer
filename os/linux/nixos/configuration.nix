@@ -76,13 +76,19 @@
         pkgs.httpie
         ];
       programs.bash.enable = true;
+      programs.bash.enableAliases = true; 
       programs.home-manager.enable = true;   
+      
+      #temp:
       home.shellAliases = {
         g = "git";
         "..." = "cd ../..";
         "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
       };
 
+      home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
+      programs.bash.aliasesFile = "${home}/.bash_aliases";
+      
       # The state version is required and should stay at the version you
       # originally installed.
       home.stateVersion = "23.05";
