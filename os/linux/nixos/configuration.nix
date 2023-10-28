@@ -87,8 +87,8 @@
       };
 
       home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
-      programs.bash.aliasesFile = "${home}/.bash_aliases";
-      
+      programs.bash.aliasesFile = "${users.users.warden.home}/.bash_aliases";
+
       # The state version is required and should stay at the version you
       # originally installed.
       home.stateVersion = "23.05";
