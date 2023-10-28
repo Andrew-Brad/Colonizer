@@ -4,25 +4,17 @@
 
 { config, pkgs, ... }:
 
-let
-  myRepo = pkgs.fetchFromGitHub {
-    owner = "andrew-brad";
-    repo = "Colonizer";
-    rev = "master";
-    sha256 = "34B3C09A93576A1B7A0AD5999CFD379CCFE66681FE17859C3E184197FBD158F8";
-  };
-in
 {
-  imports = [    
-    ./hardware-configuration.nix # Include the results of the hardware scan.
-    (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
-    ./nano-configuration.nix
-    # home manager requires nixos channel updates:
-    # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
-    # sudo nix-channel --update
-    <home-manager/nixos>
-    "${myRepo}/os/linux/.bash_aliases"
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
+      ./nano-configuration.nix
+      # home manager requires nixos channel updates:
+      # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
+      # sudo nix-channel --update
+      <home-manager/nixos> 
+    ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -78,9 +70,18 @@ in
     #packages = with pkgs; []; # see home manager section
   };
 
-  home-manager.users.warden = {      
+  home-manager.users.warden = { pkgs, ... }: {
+      home.packages = [ 
+        pkgs.atool
+        pkgs.httpie
+        ];
       programs.bash.enable = true;
       programs.home-manager.enable = true;   
+      home.shellAliases = {
+        g = "git";
+        "..." = "cd ../..";
+        "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
+      };
 
       # The state version is required and should stay at the version you
       # originally installed.
