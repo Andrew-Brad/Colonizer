@@ -13,13 +13,6 @@ let
   };
 in
 {
-  # Add your configuration options here
-  imports = [
-    "${myRepo}/os/linux/.bash_aliases"
-  ];
-}
-
-{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -29,7 +22,7 @@ in
       # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
       # sudo nix-channel --update
       <home-manager/nixos>
-      "${myRepo}/my-file.nix"
+      "${myRepo}/os/linux/.bash_aliases"
     ];
 
   # Bootloader.
