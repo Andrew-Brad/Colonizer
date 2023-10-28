@@ -76,7 +76,6 @@
         pkgs.httpie
         ];
       programs.bash.enable = true;
-      programs.bash.enableAliases = true; 
       programs.home-manager.enable = true;   
       
       #temp:
