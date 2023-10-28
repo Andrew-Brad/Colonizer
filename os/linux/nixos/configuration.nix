@@ -85,7 +85,7 @@
       #  "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
       #};
 
-      home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
+      #home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
       #programs.bash.aliasesFile = "${users.users.warden.home}/.bash_aliases";
 
       # The state version is required and should stay at the version you
@@ -148,6 +148,28 @@
       ];
     };
   };
+
+
+  let
+  gitAliases = pkgs.fetchFromGitHub {
+    owner = "ngandrass";
+    repo = "git-aliases";
+    rev = "a9d5c3f7b9e8b5d4a6c2a0d8f6e1c7f7d3c4d9f2";
+    sha256 = "0jzjzv5q1xhjwqk8y3m6x5zv1gk7q4zr0s6y1vqy4m3n9n3l2v5h";
+  };
+in
+{
+  # Add your configuration options here
+  programs.bash.shellAliases = {
+    ll = "ls -alh";
+    l = "ls -l";
+    # Add more aliases here
+    "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
+  };
+  home.file.".bashrc".text = ''
+    source ${gitAliases}/git-aliases.bash
+  '';
+}
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
