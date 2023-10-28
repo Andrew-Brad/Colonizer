@@ -4,6 +4,21 @@
 
 { config, pkgs, ... }:
 
+let
+  myRepo = pkgs.fetchFromGitHub {
+    owner = "andrew-brad";
+    repo = "Colonizer";
+    rev = "master";
+    sha256 = "34B3C09A93576A1B7A0AD5999CFD379CCFE66681FE17859C3E184197FBD158F8";
+  };
+in
+{
+  # Add your configuration options here
+  imports = [
+    "${myRepo}/os/linux/.bash_aliases"
+  ];
+}
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -13,7 +28,8 @@
       # home manager requires nixos channel updates:
       # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
       # sudo nix-channel --update
-      <home-manager/nixos> 
+      <home-manager/nixos>
+      "${myRepo}/my-file.nix"
     ];
 
   # Bootloader.
@@ -85,12 +101,12 @@
       #  "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
       #};
 
-      home.shellAliases = import "${pkgs.fetchFromGitHub {
-        owner = \"ngandrass\";
-        repo = \"git-aliases\";
-        rev = \"a9d5c3f7b9e8b5d4a6c2a0d8f6e1c7f7d3c4d9f2\";
-        sha256 = \"0jzjzv5q1xhjwqk8y3m6x5zv1gk7q4zr0s6y1vqy4m3n9n3l2v5h\";
-      }}/git-aliases.bash";
+  #    home.shellAliases = import "${pkgs.fetchFromGitHub {
+  #      owner = \"ngandrass\";
+  #      repo = \"git-aliases\";
+  #      rev = \"a9d5c3f7b9e8b5d4a6c2a0d8f6e1c7f7d3c4d9f2\";
+  #      sha256 = \"0jzjzv5q1xhjwqk8y3m6x5zv1gk7q4zr0s6y1vqy4m3n9n3l2v5h\";
+  #    }}/git-aliases.bash";
 
       #home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
       #programs.bash.aliasesFile = "${users.users.warden.home}/.bash_aliases";
