@@ -13,17 +13,16 @@ let
   };
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
-      ./nano-configuration.nix
-      # home manager requires nixos channel updates:
-      # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
-      # sudo nix-channel --update
-      <home-manager/nixos>
-      "${myRepo}/os/linux/.bash_aliases"
-    ];
+  imports = [    
+    ./hardware-configuration.nix # Include the results of the hardware scan.
+    (fetchTarball "https://github.com/nix-community/nixos-vscode-server/tarball/master") # https://github.com/nix-community/nixos-vscode-server
+    ./nano-configuration.nix
+    # home manager requires nixos channel updates:
+    # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
+    # sudo nix-channel --update
+    <home-manager/nixos>
+    "${myRepo}/os/linux/.bash_aliases"
+  ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -88,11 +87,11 @@ in
       programs.home-manager.enable = true;   
       
       #temp:
-      #home.shellAliases = {
+      # home.shellAliases = {
       #  g = "git";
       #  "..." = "cd ../..";
       #  "ab-nix-rebuild" = "sudo -i curl -o /etc/nixos/configuration.nix \"https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/nixos/configuration.nix\" && sudo -i nixos-rebuild switch --show-trace";
-      #};
+      # };
 
   #    home.shellAliases = import "${pkgs.fetchFromGitHub {
   #      owner = \"ngandrass\";
