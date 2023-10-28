@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # Copy this file to ~/.bash_aliases
-# cp "./os/Linux Server/.bash_aliases" ~
+# cp "./os/linux/.bash_aliases" ~
+
+# this first one simply lists out the aliases in the terminal for quick reference
+alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; fi; done < ~/.bash_aliases | sort'
 
 # Git aliases
 alias g="git status"
@@ -47,7 +50,7 @@ alias sudo='sudo '
 alias week='date +%V'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+# alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
