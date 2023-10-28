@@ -86,10 +86,10 @@
       #};
 
       home.shellAliases = import "${pkgs.fetchFromGitHub {
-        owner = "ngandrass";
-        repo = "git-aliases";
-        rev = "a9d5c3f7b9e8b5d4a6c2a0d8f6e1c7f7d3c4d9f2";
-        sha256 = "0jzjzv5q1xhjwqk8y3m6x5zv1gk7q4zr0s6y1vqy4m3n9n3l2v5h";
+        owner = \"ngandrass\";
+        repo = \"git-aliases\";
+        rev = \"a9d5c3f7b9e8b5d4a6c2a0d8f6e1c7f7d3c4d9f2\";
+        sha256 = \"0jzjzv5q1xhjwqk8y3m6x5zv1gk7q4zr0s6y1vqy4m3n9n3l2v5h\";
       }}/git-aliases.bash";
 
       #home.file.".bash_aliases".source = "https://raw.githubusercontent.com/Andrew-Brad/Colonizer/master/os/linux/.bash_aliases";      
