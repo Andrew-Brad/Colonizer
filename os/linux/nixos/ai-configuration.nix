@@ -7,7 +7,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      '<home-manager/nixos>' # Enable the Home Manager module for NixOS
+      <home-manager/nixos> # Enable the Home Manager module for NixOS
     ];
 
   # Use the systemd-boot EFI boot loader.
