@@ -10,7 +10,7 @@ let
 
   aliasesFile = builtins.readFile "${myRepo}/os/linux/.bash_aliases";
   _ = builtins.trace aliasesFile "contents of aliases.txt";  
-  aliases = builtins.filter (alias: (builtins.length (builtins.split "=" alias)) == 2) (builtins.split "\n" aliasesFile);
+  # aliases = builtins.filter (alias: (builtins.length (builtins.split "=" alias)) == 2) (builtins.filter (alias: alias != "") (builtins.split "\n" aliasesFile));
 in
 {
   imports =
@@ -60,10 +60,10 @@ in
     home.packages = with pkgs; [ broot htop ]; # Install broot and htop for Bobo
 
   # testing aliases
-  programs.bash.aliases = builtins.listToAttrs (map (alias: {
-      name = builtins.elemAt (builtins.split "=" alias) 0;
-      value = builtins.elemAt (builtins.split "=" alias) 1;
-    }) aliases);
+  # programs.bash.aliases = builtins.listToAttrs (map (alias: {
+  #     name = builtins.elemAt (builtins.split "=" alias) 0;
+  #     value = builtins.elemAt (builtins.split "=" alias) 1;
+  #   }) aliases);
 
     # The state version is required and should stay at the version you
     # originally installed.
