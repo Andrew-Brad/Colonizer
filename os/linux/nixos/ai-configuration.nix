@@ -42,6 +42,10 @@ in
   # Home Manager configuration for the Bobo user
   home-manager.users.Bobo = { pkgs, ... }: {
     home.packages = with pkgs; [ broot htop ]; # Install broot and htop for Bobo
+
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "23.05";
   };
 
   system.stateVersion = "23.05"; # Did you read the comment?
