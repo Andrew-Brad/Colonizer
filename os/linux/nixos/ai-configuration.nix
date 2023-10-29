@@ -8,8 +8,8 @@ let
     sha256 = "0b56vmilrrn8sfg1gx79skkai9js2124zn3vw3bq63lhdkcij45a"; # Obtain with nix-prefetch-git
   };
 
-  aliasesFile = builtins.readFile "${myRepo}/os/linux/.bash_aliases"; # Replace with the actual path to the file in the repository
-  aliases = builtins.filter (alias: builtins.length (builtins.split "=" alias) >= 2) (builtins.split "\n" aliasesFile);
+  aliasesFile = builtins.readFile "${myRepo}/os/linux/.bash_aliases";
+   aliases = builtins.filter (alias: (builtins.length (builtins.split "=" alias)) == 2) (builtins.split "\n" aliasesFile);
 in
 {
   imports =
@@ -58,8 +58,8 @@ in
   home-manager.users.Bobo = { pkgs, ... }: {
     home.packages = with pkgs; [ broot htop ]; # Install broot and htop for Bobo
 
-# testing aliases
-programs.bash.aliases = builtins.listToAttrs (map (alias: {
+  # testing aliases
+  programs.bash.aliases = builtins.listToAttrs (map (alias: {
       name = builtins.elemAt (builtins.split "=" alias) 0;
       value = builtins.elemAt (builtins.split "=" alias) 1;
     }) aliases);
