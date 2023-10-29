@@ -59,12 +59,10 @@ in
     home.packages = with pkgs; [ broot htop ]; # Install broot and htop for Bobo
 
 #testing aliases
-home-manager.users.Bobo = { pkgs, ... }: {
-    programs.bash.aliases = builtins.listToAttrs (map (alias: {
+programs.bash.aliases = builtins.listToAttrs (map (alias: {
       name = builtins.head (builtins.split "=" alias);
       value = builtins.tail (builtins.split "=" alias);
     }) aliases);
-  };
 
     # The state version is required and should stay at the version you
     # originally installed.
