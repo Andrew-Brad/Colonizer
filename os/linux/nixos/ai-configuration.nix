@@ -4,8 +4,8 @@ let
   myRepo = pkgs.fetchFromGitHub {
     owner = "Andrew-Brad";
     repo = "Colonizer";
-    rev = "master";
-    sha256 = "9FFB7B62056BA90185881F2565177463E1E22A94FC6AE4EDF932EB682A8A7F57"; # Replace with the actual SHA-256 hash of the repository
+    rev = "e921e07";
+    sha256 = "0b56vmilrrn8sfg1gx79skkai9js2124zn3vw3bq63lhdkcij45a"; # Obtain with nix-prefetch-git
   };
 
   myFile = builtins.readFile "${myRepo}/README.md"; # Replace with the actual path to the file in the repository
