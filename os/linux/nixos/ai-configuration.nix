@@ -9,7 +9,8 @@ let
   };
 
   aliasesFile = builtins.readFile "${myRepo}/os/linux/.bash_aliases";
-   aliases = builtins.filter (alias: (builtins.length (builtins.split "=" alias)) == 2) (builtins.split "\n" aliasesFile);
+  _ = builtins.trace aliasesFile "contents of aliases.txt";  
+  aliases = builtins.filter (alias: (builtins.length (builtins.split "=" alias)) == 2) (builtins.split "\n" aliasesFile);
 in
 {
   imports =
