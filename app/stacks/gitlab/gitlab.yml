@@ -3,7 +3,9 @@ services:
   web:
     image: 'gitlab/gitlab-ce:16.3.6-ce.0'
     container_name: gitlab
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
     hostname: 'gitlab.homelab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
@@ -28,10 +30,14 @@ services:
   postgres:
     image: postgres:13
     container_name: gitlab_postgres
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+    secrets:
+      - gitlab_db_password
     environment:
-      POSTGRES_USER: 
-      POSTGRES_PASSWORD: 
+      POSTGRES_USER: gitlabuser
+      POSTGRES_PASSWORD_FILE: /run/secrets/gitlab_db_password
       POSTGRES_DB: gitlab_production
     volumes:
       - 'gitlab_postgres_data:/var/lib/postgresql/data'
@@ -54,7 +60,14 @@ volumes:
     labels:
       andrews-homelab: ""
 
+secrets:
+  gitlab_db_password:
+    external: true
+  gitlab_root_password:
+    #  file: db_root_password.txt
+    external: true
 
+     
       # - './srv/gitlab/config:/etc/gitlab'
       # - './srv/gitlab/logs:/var/log/gitlab'
       # - './srv/gitlab/data:/var/opt/gitlab'
