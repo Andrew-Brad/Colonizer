@@ -2,17 +2,18 @@ version: '3.7'
 services:
   web:
     image: 'gitlab/gitlab-ce:16.3.6-ce.0'
-    container_name: gitlab
     deploy:
       restart_policy:
         condition: any
     hostname: 'gitlab.homelab'
+    secrets:
+      - gitlab_db_password
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.homelab'
         postgresql['enable'] = true
-        gitlab_rails['db_username'] = ""
-        gitlab_rails['db_password'] = ""
+        gitlab_rails['db_username'] = "gitlabuser"
+        gitlab_rails['db_password'] = File.read('/run/secrets/gitlab_db_password').strip
         gitlab_rails['db_host'] = "postgres"
         gitlab_rails['db_database'] = "gitlab_production"
         gitlab_rails['db_port'] = 5432
@@ -29,10 +30,11 @@ services:
 
   postgres:
     image: postgres:13
-    container_name: gitlab_postgres
     deploy:
       restart_policy:
         condition: any
+      update_config:
+        order: start-first
     secrets:
       - gitlab_db_password
     environment:
@@ -46,7 +48,7 @@ services:
 
 networks:
   gitlab_network:
-    driver: bridge
+    driver: overlay
 
 volumes: 
   gitlab_config: 
@@ -63,10 +65,6 @@ volumes:
 secrets:
   gitlab_db_password:
     external: true
-  gitlab_root_password:
-    #  file: db_root_password.txt
-    external: true
-
      
       # - './srv/gitlab/config:/etc/gitlab'
       # - './srv/gitlab/logs:/var/log/gitlab'
