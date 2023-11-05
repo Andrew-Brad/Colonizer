@@ -1,6 +1,6 @@
 # First time setup
 
-## Install Docker via script 
+## Install Docker via script (OBSOLETE as of 22.10 installer!)
 
 `curl -fsSL https://get.docker.com -o install-docker.sh`
 
