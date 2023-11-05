@@ -128,8 +128,12 @@
   # networking.firewall.enable = false;
 
   # Docker
-  virtualisation.docker.enable = true; # https://nixos.wiki/wiki/Docker
-  virtualisation.docker.enableOnBoot = true;
+  # https://nixos.wiki/wiki/Docker
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    liveRestore = false;
+  };
   users.extraGroups.docker.members = [ "warden" ];
   virtualisation.oci-containers.backend = "docker"; # not in the docs but needed apparently
   virtualisation.oci-containers.containers = {

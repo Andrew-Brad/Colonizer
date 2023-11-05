@@ -1,0 +1,60 @@
+version: '3.7'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:16.3.6-ce.0'
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.homelab'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.homelab'
+        postgresql['enable'] = true
+        gitlab_rails['db_username'] = ""
+        gitlab_rails['db_password'] = ""
+        gitlab_rails['db_host'] = "postgres"
+        gitlab_rails['db_database'] = "gitlab_production"
+        gitlab_rails['db_port'] = 5432
+    ports:
+      - '81:80'
+      - '444:443'
+      - '23:22'
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_logs:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+    networks:
+      - gitlab_network
+
+  postgres:
+    image: postgres:13
+    container_name: gitlab_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: gitlab_production
+    volumes:
+      - 'gitlab_postgres_data:/var/lib/postgresql/data'
+    networks:
+      - gitlab_network
+
+networks:
+  gitlab_network:
+    driver: bridge
+
+volumes: 
+  gitlab_config: 
+    labels:
+      andrews-homelab: ""
+  gitlab_logs: {}    
+  gitlab_data: 
+    labels:
+      andrews-homelab: ""
+  gitlab_postgres_data: 
+    labels:
+      andrews-homelab: ""
+
+
+      # - './srv/gitlab/config:/etc/gitlab'
+      # - './srv/gitlab/logs:/var/log/gitlab'
+      # - './srv/gitlab/data:/var/opt/gitlab'
