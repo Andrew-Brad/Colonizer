@@ -65,7 +65,3 @@ volumes:
 secrets:
   gitlab_db_password:
     external: true
-     
-      # - './srv/gitlab/config:/etc/gitlab'
-      # - './srv/gitlab/logs:/var/log/gitlab'
-      # - './srv/gitlab/data:/var/opt/gitlab'
