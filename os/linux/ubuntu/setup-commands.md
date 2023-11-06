@@ -1,14 +1,17 @@
 # First time setup
 
-## Install Docker via script (OBSOLETE as of 22.10 installer!)
+## Install Docker via script
 
-`curl -fsSL https://get.docker.com -o install-docker.sh`
+```bash
+curl -fsSL https://get.docker.com -o install-docker.sh
+sudo bash ./install-docker.sh
+```
 
 ### Walkthrough (if needed)
 
-Source: https://get.docker.com/
+Source: <https://get.docker.com/>
 
-Walkthrough: https://youtu.be/YeF7ObTnDwc?list=PLVrjozBRY-MpxW0NXUnxoVOy-e-4GxzBq&t=203
+Walkthrough: <https://youtu.be/YeF7ObTnDwc?list=PLVrjozBRY-MpxW0NXUnxoVOy-e-4GxzBq&t=203>
 
 ### May or may not need to do this after
 
@@ -23,8 +26,23 @@ Walkthrough: https://youtu.be/YeF7ObTnDwc?list=PLVrjozBRY-MpxW0NXUnxoVOy-e-4GxzB
 
 `sudo docker swarm init`
 
-## Portainer
+## Portainer in Swarm Mode - linux-amd64-2.19.1
 
+<https://docs.portainer.io/start/install/server/swarm/linux>
+
+1.
+
+```bash
+curl -L https://downloads.portainer.io/ee2-19/portainer-agent-stack.yml -o portainer-agent-stack.yml
+```
+
+2.
+
+```bash
+docker stack deploy -c portainer-agent-stack.yml portainer
+```
+
+These ONLY work for docker standalone:
 `docker volume create portainer_data`
 `docker run -d -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
 
