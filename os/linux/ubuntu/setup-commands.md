@@ -1,5 +1,23 @@
 # First time setup
 
+## Install Packages
+
+```bash
+sudo apt update && sudo apt upgrade -y;
+sudo apt install tldr nfs-common htop -y;
+```
+
+## Get NFS Shares Online
+
+```bash
+sudo mkdir /home/user/homelab_nfs;
+sudo mount -t nfs 192.168.1.X:/nas_target_dir /home/user/homelab_nfs
+echo "192.168.1.X:/volume1/nas_target_dir /home/warden/homelab_nfs nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
+```
+
+### Optional: Auto-mount using fstab
+
+
 ## Install Docker via script
 
 ```bash
@@ -42,7 +60,7 @@ curl -L https://downloads.portainer.io/ee2-19/portainer-agent-stack.yml -o porta
 docker stack deploy -c portainer-agent-stack.yml portainer
 ```
 
-These ONLY work for docker standalone:
+(Obsolete) These ONLY work for docker standalone:
 `docker volume create portainer_data`
 `docker run -d -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest`
 

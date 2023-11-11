@@ -6,6 +6,9 @@
 # this first one simply lists out the aliases in the terminal for quick reference
 alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; fi; done < ~/.bash_aliases | sort'
 
+# these 
+alias ab-colonizer-seed-bash-aliases='cp ~/git/os/linux/.bash_aliases ~'
+
 # Git aliases
 alias g="git status"
 alias gitgud="git add -A && git commit --amend --no-edit && git push -f;"

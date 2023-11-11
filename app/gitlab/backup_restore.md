@@ -2,6 +2,10 @@
 
 <https://docs.gitlab.com/ee/administration/backup_restore/>
 
+## Note!!!
+
+You can only restore a backup to exactly the same version and type (CE/EE) of GitLab on which it was created.
+
 ## Backup
 
 <https://docs.gitlab.com/ee/administration/backup_restore/>
