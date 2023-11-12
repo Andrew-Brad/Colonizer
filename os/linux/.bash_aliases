@@ -6,7 +6,7 @@
 # this first one simply lists out the aliases in the terminal for quick reference
 alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; fi; done < ~/.bash_aliases | sort'
 
-# these 
+# colonizer aliases to help get your dotfiles in a fresh environment
 alias ab-colonizer-seed-bash-aliases='cp ~/git/os/linux/.bash_aliases ~'
 
 # Git aliases
@@ -23,7 +23,8 @@ alias .....="cd ../../../.."
 alias dirdropbox="cd ~/Documents/Dropbox"
 alias dirdownloads="cd ~/Downloads"
 alias dirdesktop="cd ~/Desktop"
-alias dirgit="cd ~/Desktop/Git"
+alias dirgit='if [[ "$OSTYPE" == "linux-gnu"* ]]; then cd ~/git; elif [[ "$OSTYPE" == "darwin"* ]]; then cd ~/Desktop/git; elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then cd /c/Users/$USER/Desktop/git; else echo "Unknown OS"; fi'
+alias dircolonizer='if [[ "$OSTYPE" == "linux-gnu"* ]]; then cd ~/git/Colonizer; elif [[ "$OSTYPE" == "darwin"* ]]; then cd ~/Desktop/git/Colonizer; elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then cd /c/Users/$USER/Desktop/git/Colonizer; else echo "Unknown OS"; fi'
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
