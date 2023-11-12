@@ -8,7 +8,7 @@ alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; f
 alias ab-aliases='ab-alias;'
 
 # colonizer aliases to help get your dotfiles in a fresh environment
-alias ab-colonizer-seed-bash-aliases='cp ~/git/os/linux/.bash_aliases ~'
+alias ab-colonizer-seed-bash-aliases='cp ~/git/Colonizer/os/linux/.bash_aliases ~'
 
 # misc ab-* aliases
 alias ab-update="sudo apt update && sudo apt upgrade -y && sudo snap refresh;"
