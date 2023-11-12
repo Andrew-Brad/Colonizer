@@ -5,6 +5,7 @@
 ```bash
 sudo apt update && sudo apt upgrade -y;
 sudo apt install tldr nfs-common htop -y;
+sudo snap install tldr -y;
 ```
 
 ## Get NFS Shares Online
@@ -12,11 +13,8 @@ sudo apt install tldr nfs-common htop -y;
 ```bash
 sudo mkdir /home/user/homelab_nfs;
 sudo mount -t nfs 192.168.1.X:/nas_target_dir /home/user/homelab_nfs
-echo "192.168.1.X:/volume1/nas_target_dir /home/warden/homelab_nfs nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" >> /etc/fstab
+echo "192.168.1.X:/volume1/nas_target_dir /home/user/homelab_nfs nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" | sudo tee -a /etc/fstab
 ```
-
-### Optional: Auto-mount using fstab
-
 
 ## Install Docker via script
 
