@@ -4,7 +4,8 @@
 # cp "./os/linux/.bash_aliases" ~
 
 # this first one simply lists out the aliases in the terminal for quick reference
-alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; fi; done < ~/.bash_aliases | sort'
+alias ab-alias='while read line; do if [[ $line == alias* ]]; then echo $line; fi; done < ~/.bash_aliases | sort;'
+alias ab-aliases='ab-alias;'
 
 # colonizer aliases to help get your dotfiles in a fresh environment
 alias ab-colonizer-seed-bash-aliases='cp ~/git/os/linux/.bash_aliases ~'
@@ -67,9 +68,6 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
-# Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
 # macOS has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
 
@@ -86,11 +84,6 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-# Disable Spotlight
-alias spotoff="sudo mdutil -a -i off"
-# Enable Spotlight
-alias spoton="sudo mdutil -a -i on"
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
