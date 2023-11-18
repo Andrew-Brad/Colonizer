@@ -51,6 +51,7 @@ services:
     command: >
       /bin/bash -c "
         while true; do
+          gitlab-ctl reconfigure;
           gitlab-rake gitlab:backup:create;
           ls -la /var/opt/gitlab/backups/;
           mv /var/opt/gitlab/backups/* /backup;
