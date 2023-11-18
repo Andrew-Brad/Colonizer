@@ -53,7 +53,7 @@ services:
         while true; do
           gitlab-rake gitlab:backup:create;
           ls -la /var/opt/gitlab/backups/;
-          cp /var/opt/gitlab/backups/* /backup;
+          mv /var/opt/gitlab/backups/* /backup;
           sleep 86400;
         done
       "
