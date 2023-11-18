@@ -55,7 +55,7 @@ services:
     secrets:
       - homelab_nas_ip
     environment:
-      NAS_IP: "{{with secret 'homelab_nas_ip'}}{{.Spec.Data}}{{end}}"
+      NAS_IP: "{{with_secret 'homelab_nas_ip'}}{{.Spec.Data}}{{end}}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - nfs_backup:/backups
