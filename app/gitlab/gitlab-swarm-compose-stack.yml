@@ -18,8 +18,6 @@ services:
         gitlab_rails['db_host'] = "postgres"
         gitlab_rails['db_database'] = "gitlab_production"
         gitlab_rails['db_port'] = 5432
-      # workaround since docker secret expansion is not supported in volume definitions
-      NFS_OPTIONS: "-o addr={{DOCKER_SECRET:nas_homelab_ip}},rw"
     ports:
       - '81:80'
       - '444:443'
@@ -54,13 +52,16 @@ services:
     depends_on:
       - web
       - postgres
+    environment:
+      NAS_IP: "{{with secret 'homelab_nas_ip'}}{{.Spec.Data}}{{end}}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - nfs_backup:/backups
     command: >
       sh -c "apk update && apk add --no-cache bash docker && \
       docker exec -t $$(docker ps -qf name=web) gitlab-backup create && \
-      docker cp $$(docker ps -qf name=web):/var/opt/gitlab/backups/$$(ls -t /var/opt/gitlab/backups/ | head -1) /backups"
+      docker cp $$(docker ps -qf name=web):/var/opt/gitlab/backups/$$(ls -t /var/opt/gitlab/backups/ | head -1) /backups && \
+      mount -t nfs $$NAS_IP:/home/warden/homelab_nfs/arkham/gitlab_backups /backups"
     networks:
       - gitlab_network
 
@@ -81,10 +82,11 @@ volumes:
       andrews-homelab: ""
   nfs_backup: 
     driver_opts:
-      # driver: local
-      type: nfs
-      o: "${NFS_OPTIONS}"
-      device: ":/home/warden/homelab_nfs/arkham/gitlab_backups"
+      driver: local      
+      driver_opts:
+        type: nfs
+        o: ""
+      external: true
 
 secrets:
   gitlab_db_password:
