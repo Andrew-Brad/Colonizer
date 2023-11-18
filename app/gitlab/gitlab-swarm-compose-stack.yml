@@ -8,7 +8,6 @@ services:
     hostname: 'gitlab.homelab'
     secrets:
       - gitlab_db_password
-      - homelab_nas_ip
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.homelab'
@@ -52,13 +51,9 @@ services:
     depends_on:
       - web
       - postgres
-    secrets:
-      - homelab_nas_ip
-    environment:
-      NAS_IP: "{{with_secret 'homelab_nas_ip'}}{{.Spec.Data}}{{end}}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - nfs_backup:/backups
+      - /home/warden/homelab_nfs/arkham/gitlab_backups:/backups
     command: >
       sh -c "apk update && apk add --no-cache bash docker && \
       docker exec -t $$(docker ps -qf name=web) gitlab-backup create && \
@@ -81,16 +76,8 @@ volumes:
       andrews-homelab: ""
   gitlab_postgres_data: 
     labels:
-      andrews-homelab: ""
-  nfs_backup: 
-    driver: local      
-    driver_opts:            
-      type: nfs
-      o: ""
-    # external: true
+      andrews-homelab: ""    
 
 secrets:
   gitlab_db_password:
-    external: true
-  homelab_nas_ip:
     external: true
