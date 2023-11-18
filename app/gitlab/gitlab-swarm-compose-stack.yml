@@ -46,6 +46,22 @@ services:
     networks:
       - gitlab_network
 
+  backup:
+    image: 'gitlab/gitlab-ce:16.3.6-ce.0'
+    command: >
+      /bin/bash -c "
+        while true; do
+          gitlab-rake gitlab:backup:create;
+          mv /var/opt/gitlab/backups/* /backup;
+          sleep 86400;
+        done
+      "
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_logs:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+      - 'nfs_backup:/backup'
+
 networks:
   gitlab_network:
     driver: overlay
@@ -61,6 +77,11 @@ volumes:
   gitlab_postgres_data: 
     labels:
       andrews-homelab: ""
+  nfs_backup:
+    driver_opts:
+      type: none
+      device: /home/warden/homelab_nfs/arkham/gitlab_backups
+      o: bind
 
 secrets:
   gitlab_db_password:
