@@ -52,7 +52,7 @@ services:
       /bin/bash -c "
         while true; do
           gitlab-rake gitlab:backup:create;
-          mv /var/opt/gitlab/backups/* /backup;
+          mv -p /var/opt/gitlab/backups/* /backup;
           sleep 86400;
         done
       "
