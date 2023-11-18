@@ -47,14 +47,16 @@ services:
       - gitlab_network
 
   backup:
-    image: alpine:latest
+    image: alpine:3.18
+    healthcheck:
+      disable: true
    # depends_on:
    #   - web
    #   - postgres
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - nfs_backup:/backups
-   # command: >
+   # command: >s
    #   sh -c "apk update && apk add --no-cache bash docker && \
    #   docker exec -t $$(docker ps -qf name=web) gitlab-backup create && \
    #   docker cp $$(docker ps -qf name=web):/var/opt/gitlab/backups/$$(ls -t /var/opt/gitlab/backups/ | head -1) /backups"
