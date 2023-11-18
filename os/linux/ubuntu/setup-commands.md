@@ -4,7 +4,7 @@
 
 ```bash
 sudo apt update && sudo apt upgrade -y;
-sudo apt install tldr nfs-common htop -y;
+sudo apt install tldr nfs-common htop powertop -y;
 sudo snap install tldr -y;
 ```
 

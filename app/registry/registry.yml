@@ -1,0 +1,27 @@
+# dockerhub pull-through cache registry
+version: '3.8'
+
+services:
+  registry:
+    image: registry:2
+    ports:
+      - "5000:5000"
+    environment:
+      REGISTRY_PROXY_REMOTEURL: "https://registry-1.docker.io" # Docker Hub as upstream
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - registry-data:/var/lib/registry
+
+networks:
+  registry_network:
+
+volumes:
+  registry-data:
+
+#secrets:
+#  registry_credentials:
+#    external: true
