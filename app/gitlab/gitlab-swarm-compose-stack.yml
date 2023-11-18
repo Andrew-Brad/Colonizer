@@ -5,6 +5,8 @@ services:
     deploy:
       restart_policy:
         condition: any
+    healthcheck:
+      disable: true
     hostname: 'gitlab.homelab'
     secrets:
       - gitlab_db_password
