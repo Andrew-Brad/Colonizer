@@ -85,7 +85,7 @@ volumes:
     driver_opts:            
       type: nfs
       o: ""
-    external: true
+    # external: true
 
 secrets:
   gitlab_db_password:
