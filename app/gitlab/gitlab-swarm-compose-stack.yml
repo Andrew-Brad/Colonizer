@@ -57,8 +57,7 @@ services:
     command: >
       sh -c "apk update && apk add --no-cache bash docker && \
       docker exec -t $$(docker ps -qf name=web) gitlab-backup create && \
-      docker cp $$(docker ps -qf name=web):/var/opt/gitlab/backups/$$(ls -t /var/opt/gitlab/backups/ | head -1) /backups && \
-      mount -t nfs $$NAS_IP:/home/warden/homelab_nfs/arkham/gitlab_backups /backups"
+      docker cp $$(docker ps -qf name=web):/var/opt/gitlab/backups/$$(ls -t /var/opt/gitlab/backups/ | head -1) /backups
     networks:
       - gitlab_network
 
