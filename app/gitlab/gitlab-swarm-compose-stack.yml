@@ -48,8 +48,8 @@ services:
 
   backup:
     image: alpine:3.18
-    healthcheck:
-      disable: true
+    secrets:
+      - nfs_server_ip
     depends_on:
       - web
       - postgres
