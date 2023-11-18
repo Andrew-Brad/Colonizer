@@ -8,6 +8,7 @@ services:
     hostname: 'gitlab.homelab'
     secrets:
       - gitlab_db_password
+      - homelab_nas_ip
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.homelab'
@@ -50,8 +51,6 @@ services:
 
   backup:
     image: alpine:3.18
-    secrets:
-      - homelab_nas_ip
     depends_on:
       - web
       - postgres
