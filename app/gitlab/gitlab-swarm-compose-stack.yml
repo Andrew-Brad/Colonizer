@@ -49,7 +49,7 @@ services:
   backup:
     image: alpine:3.18
     secrets:
-      - nfs_server_ip
+      - homelab_nas_ip
     depends_on:
       - web
       - postgres
