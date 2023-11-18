@@ -47,7 +47,7 @@ services:
       - gitlab_network
 
   backup:
-    image: alpine:3.18
+    image: ubuntu:latest
     healthcheck:
       disable: true
    # depends_on:
