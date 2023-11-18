@@ -81,12 +81,11 @@ volumes:
     labels:
       andrews-homelab: ""
   nfs_backup: 
-    driver_opts:
-      driver: local      
-      driver_opts:
-        type: nfs
-        o: ""
-      external: true
+    driver: local      
+    driver_opts:            
+      type: nfs
+      o: ""
+    external: true
 
 secrets:
   gitlab_db_password:
