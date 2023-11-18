@@ -46,6 +46,20 @@ services:
     networks:
       - gitlab_network
 
+  backup:
+    image: alpine:latest
+    depends_on:
+      - web
+      - postgres
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - nfs_backup:/backups
+    command: sh -c "apk update && apk add --no-cache bash docker && \
+                    docker exec -t $(docker ps -qf name=web) gitlab-backup create && \
+                    docker cp $(docker ps -qf name=web):/var/opt/gitlab/backups/$(ls -t /var/opt/gitlab/backups/ | head -1) /backups"
+    networks:
+      - gitlab_network
+
 networks:
   gitlab_network:
     driver: overlay
@@ -61,6 +75,11 @@ volumes:
   gitlab_postgres_data: 
     labels:
       andrews-homelab: ""
+  nfs_backup: 
+    driver_opts:
+      type: nfs
+      o: addr=nfs_server_ip,rw
+      device: ":/home/warden/homelab_nfs/arkham/gitlab_backups"
 
 secrets:
   gitlab_db_password:
