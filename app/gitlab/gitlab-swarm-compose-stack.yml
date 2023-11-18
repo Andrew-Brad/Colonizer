@@ -18,8 +18,7 @@ services:
         gitlab_rails['db_database'] = "gitlab_production"
         gitlab_rails['db_port'] = 5432
       # workaround since docker secret expansion is not supported in volume definitions
-      environment:
-        NFS_OPTIONS: "-o addr={{DOCKER_SECRET:nas_homelab_ip}},rw"
+      NFS_OPTIONS: "-o addr={{DOCKER_SECRET:nas_homelab_ip}},rw"
     ports:
       - '81:80'
       - '444:443'
@@ -83,7 +82,7 @@ volumes:
       andrews-homelab: ""
   nfs_backup: 
     driver_opts:
-      #driver: local
+      # driver: local
       type: nfs
       o: "${NFS_OPTIONS}"
       device: ":/home/warden/homelab_nfs/arkham/gitlab_backups"
