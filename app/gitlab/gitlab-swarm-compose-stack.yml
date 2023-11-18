@@ -50,9 +50,9 @@ services:
     image: alpine:3.18
     healthcheck:
       disable: true
-   # depends_on:
-   #   - web
-   #   - postgres
+    depends_on:
+      - web
+      - postgres
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       # - nfs_backup:/backups
@@ -81,9 +81,11 @@ volumes:
   nfs_backup: 
     driver_opts:
       type: nfs
-      o: addr=nfs_server_ip,rw
+      o: addr={{DOCKER_SECRET:homelab_nas_ip}},rw
       device: ":/home/warden/homelab_nfs/arkham/gitlab_backups"
 
 secrets:
   gitlab_db_password:
+    external: true
+  homelab_nas_ip:
     external: true
