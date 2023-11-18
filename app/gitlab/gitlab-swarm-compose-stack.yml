@@ -48,9 +48,9 @@ services:
 
   backup:
     image: alpine:latest
-    depends_on:
-      - web
-      - postgres
+   # depends_on:
+   #   - web
+   #   - postgres
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - nfs_backup:/backups
