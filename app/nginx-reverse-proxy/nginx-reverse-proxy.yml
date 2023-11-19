@@ -21,7 +21,7 @@ services:
       DB_MYSQL_NAME: nginx_reverse_proxy_manager
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
-      depends_on:
+    depends_on:
       - rpm_db
     volumes:
       - nginx_reverse_proxy_data:/config
