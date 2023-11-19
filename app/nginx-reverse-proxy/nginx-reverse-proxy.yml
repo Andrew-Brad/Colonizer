@@ -1,11 +1,8 @@
 version: '3.8'
 services:
-
   # Nginx Proxy Manager service
   rpm:
     image: 'jc21/nginx-proxy-manager:github-pr-3331'
-    # curious that this one was provided:
-    # image: jlesage/nginx-proxy-manager:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -63,11 +60,12 @@ services:
       - mysql_root_password
       - mysql_password
 
-  # Lightweight sample website service
+  # Lightweight site for diagnosis and troubleshooting
   smoke_test_website:
-    image: httpd:alpine  # You can also use 'httpd:latest' for Apache HTTP Server
-    ports:
-      - "1234:80"
+    image: httpd:alpine
+    # uncomment these if you want to be able to browse to x.x.x.x:1234 to test from outside the docker network
+    # ports:
+    #  - "1234:80"
     deploy:
       replicas: 0  # Initial replicas set to 0, can bump these up temporarily for smoke testing
     networks:
