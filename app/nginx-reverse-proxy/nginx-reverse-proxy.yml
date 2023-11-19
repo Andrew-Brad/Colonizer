@@ -32,12 +32,14 @@ services:
       MYSQL_DATABASE: nginx_reverse_proxy_manager
       MYSQL_USER: nginx_reverse_proxy_manager
       MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+    # volumes:
+    #  - /home/warden/nginx-reverse-proxy-manager:/config
     volumes:
-      - ./data/mysql:/config
+      - mysql_nginx_data:/config
 
     # Configure service networks
     networks:
-      - nxginx_proxy_manager_network
+      - nginx_proxy_manager_network
 
     # Define secrets for MySQL passwords
     secrets:
@@ -45,12 +47,16 @@ services:
       - mysql_password
 
 networks:
-  nxginx_proxy_manager_network:
+  nginx_proxy_manager_network:
     name: nginx_proxy_manager_network
 
 volumes:
   nginx_reverse_proxy_data:
     name: nginx_reverse_proxy_data
+    labels:
+      andrews-homelab: "back_me_up"
+  mysql_nginx_data:
+    name: mysql_nginx_data
     labels:
       andrews-homelab: "back_me_up"
 
