@@ -14,11 +14,18 @@ services:
       - "80:80" # HTTP 
       - "82:81" # Nginx Proxy Manager web interface
       - "443:443" # HTTPS
+    environment:  # Add these lines for MySQL connection
+      DB_HOST: rpm_db  # Replace 'rpm_db' with the MySQL service name
+      DB_USER: nginx_reverse_proxy_manager
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      DB_NAME: nginx_reverse_proxy_manager
     volumes:
       - nginx_reverse_proxy_data:/config
       # lets encrypt directory intentionally excluded
       # SSL certificates, when managed by Nginx Proxy Manager, are stored within its internal database or configurations, not as separate files in the container filesystem.
       # This setup ensures persistence and ease of management within the Nginx Proxy Manager tool.
+    secrets:
+      - mysql_password
 
     # Configure service networks
     networks:
