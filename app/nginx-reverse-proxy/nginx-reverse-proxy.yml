@@ -2,17 +2,21 @@ version: '3.8'
 services:
 
   # Nginx Proxy Manager service
-  app:
+  rpm:
     image: 'jc21/nginx-proxy-manager:latest'
     # curious that this one was provided:
     # image: jlesage/nginx-proxy-manager:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
     ports:
       - "80:80" # HTTP 
       - "82:81" # Nginx Proxy Manager web interface
       - "443:443" # HTTPS
     volumes:
       - nginx_reverse_proxy_data:/config
-      # lets encrypt folder missing
+      # lets encrypt directory intentionally excluded
       # SSL certificates, when managed by Nginx Proxy Manager, are stored within its internal database or configurations, not as separate files in the container filesystem.
       # This setup ensures persistence and ease of management within the Nginx Proxy Manager tool.
 
@@ -25,15 +29,18 @@ services:
     #  test: ["CMD", "curl", "-f", "http://localhost/"]
 
   # service for Nginx Proxy Manager backend
-  db:
+  rpm_db:
     image: mariadb:lts-jammy
+    deploy:
+      deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 10
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
       MYSQL_DATABASE: nginx_reverse_proxy_manager
       MYSQL_USER: nginx_reverse_proxy_manager
       MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
-    # volumes:
-    #  - /home/warden/nginx-reverse-proxy-manager:/config
     volumes:
       - mysql_nginx_data:/config
 
@@ -46,6 +53,20 @@ services:
       - mysql_root_password
       - mysql_password
 
+  # Lightweight sample website service
+  smoke_test_website:
+    image: nginx:latest  # You can also use 'httpd:latest' for Apache HTTP Server
+    ports:
+      - "1234:80"  # Expose the service on port 8080 (adjust if needed)
+    deploy:
+      replicas: 0  # Initial replicas set to 0, can bump these up temporarily for smoke testing
+    networks:
+      - nginx_proxy_manager_network
+
+# Note about networks
+# In order for RPM to proxy to those services, they need to be on the same network
+# When containers are connected within the same network, Docker provides built-in DNS resolution to allow these
+# containers to communicate with each other using their container names. (--name foocontainer)
 networks:
   nginx_proxy_manager_network:
     name: nginx_proxy_manager_network

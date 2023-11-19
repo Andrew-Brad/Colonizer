@@ -4,7 +4,8 @@ services:
     image: 'gitlab/gitlab-ce:16.3.6-ce.0'
     deploy:
       restart_policy:
-        condition: any
+        condition: on-failure
+        max_attempts: 10
     healthcheck:
       disable: true
     hostname: 'gitlab.homelab'
@@ -34,7 +35,8 @@ services:
     image: postgres:13
     deploy:
       restart_policy:
-        condition: any
+        condition: on-failure
+        max_attempts: 10
       update_config:
         order: start-first
     secrets:
