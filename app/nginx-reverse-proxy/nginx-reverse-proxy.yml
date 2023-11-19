@@ -3,7 +3,7 @@ services:
 
   # Nginx Proxy Manager service
   rpm:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: 'jc21/nginx-proxy-manager:github-pr-3331'
     # curious that this one was provided:
     # image: jlesage/nginx-proxy-manager:latest
     deploy:
@@ -15,10 +15,14 @@ services:
       - "82:81" # Nginx Proxy Manager web interface
       - "443:443" # HTTPS
     environment:  # Add these lines for MySQL connection
-      DB_HOST: rpm_db  # Replace 'rpm_db' with the MySQL service name
-      DB_USER: nginx_reverse_proxy_manager
-      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
-      DB_NAME: nginx_reverse_proxy_manager
+      DB_MYSQL_HOST: rpm_db  # Replace 'rpm_db' with the MySQL service name
+      DB_MYSQL_USER: nginx_reverse_proxy_manager
+      DB_MYSQL_PASSWORD__FILE: /run/secrets/mysql_password
+      DB_MYSQL_NAME: nginx_reverse_proxy_manager
+      # Uncomment this if IPv6 is not enabled on your host
+      # DISABLE_IPV6: 'true'
+      depends_on:
+      - rpm_db
     volumes:
       - nginx_reverse_proxy_data:/config
       # lets encrypt directory intentionally excluded
