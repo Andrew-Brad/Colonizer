@@ -32,7 +32,6 @@ services:
   rpm_db:
     image: mariadb:lts-jammy
     deploy:
-      deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 10
