@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+
+  # Nginx Proxy Manager service
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    # curious that this one was provided:
+    # image: jlesage/nginx-proxy-manager:latest
+    ports:
+      - "80:80" # HTTP 
+      - "81:81" # Nginx Proxy Manager web interface
+      - "443:443" # HTTPS
+    volumes:
+      - nginx_reverse_proxy_data:/config
+      # lets encrypt folder missing
+      # SSL certificates, when managed by Nginx Proxy Manager, are stored within its internal database or configurations, not as separate files in the container filesystem.
+      # This setup ensures persistence and ease of management within the Nginx Proxy Manager tool.
+
+    # Configure service networks
+    networks:
+      - nxginx_proxy_manager_network
+
+    # Define health checks
+    # healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://localhost/"]
+
+  # service for Nginx Proxy Manager backend
+  db:
+    image: linuxserver/mariadb:lts-jammy
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: nginx_reverse_proxy_manager
+      MYSQL_USER: nginx_reverse_proxy_manager
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+    volumes:
+      - ./data/mysql:/config
+
+    # Configure service networks
+    networks:
+      - nxginx_proxy_manager_network
+
+    # Define secrets for MySQL passwords
+    secrets:
+      - mysql_root_password
+      - mysql_password
+
+networks:
+  nxginx_proxy_manager_network:
+    name: nginx_proxy_manager_network
+
+volumes:
+  nginx_reverse_proxy_data:
+    name: nginx_reverse_proxy_data
+    labels:
+      andrews-homelab: "back_me_up"
+
+secrets:
+  mysql_root_password:
+    external: true
+  mysql_password:
+    external: true
