@@ -18,7 +18,7 @@ services:
 
     # Configure service networks
     networks:
-      - nginx_reverse_proxy_data
+      - nginx_proxy_manager_network
 
     # Define health checks
     # healthcheck:
