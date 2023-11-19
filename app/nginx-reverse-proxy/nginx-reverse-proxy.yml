@@ -55,8 +55,6 @@ services:
   # Lightweight sample website service
   smoke_test_website:
     image: nginx:latest  # You can also use 'httpd:latest' for Apache HTTP Server
-    ports:
-      - "1234:80"  # Expose the service on port 8080 (adjust if needed)
     deploy:
       replicas: 0  # Initial replicas set to 0, can bump these up temporarily for smoke testing
     networks:
