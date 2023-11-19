@@ -26,7 +26,7 @@ services:
 
   # service for Nginx Proxy Manager backend
   db:
-    image: linuxserver/mariadb:lts-jammy
+    image: mariadb:lts-jammy
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
       MYSQL_DATABASE: nginx_reverse_proxy_manager
