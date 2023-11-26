@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  homeassistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    ports:
+      - "8123:8123"
+    volumes:
+      # todo: I think config volume may be better off as an NFS binding
+      - homeassistant_config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    networks:
+      - nginx_proxy_manager_network
+volumes:
+    homeassistant_config: 
+      labels:
+        andrews-homelab: ""
