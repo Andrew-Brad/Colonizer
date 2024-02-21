@@ -1,2 +1,3 @@
 # Colonizer
-Scripts, files, and general resources I use to get myself up and running on a fresh OS image.
+
+Scripts, files, and system setup resources I use to get myself up and running on a fresh OS image.
