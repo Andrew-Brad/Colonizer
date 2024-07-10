@@ -58,7 +58,7 @@ sudo nano /etc/fstab
 ```
 
 Add this line, replacing with correct UUID:
-`UUID=337992ed-5264-44e2-80be-47176d918866 /mnt/ab-nvme-ssd ext4 defaults 0 2`
+`UUID=e6059791-e23b-43c4-86cf-e28db44c7e57 /mnt/ab-nvme-ssd ext4 defaults 0 2`
 
 Verify your SSD is mounted:
 `df -h`
@@ -151,7 +151,7 @@ helm repo update
 
 ```bash
 kubectl create namespace cattle-system
-helm install rancher rancher-latest/rancher --namespace cattle-system --version 2.8.4 --set hostname=rancher.homelab --set replicas=1 --set bootstrapPassword=changemetwotimes
+helm install rancher rancher-latest/rancher --namespace cattle-system --version 2.8.4 --set hostname=rancher.homelab --set replicas=1 --set bootstrapPassword=changeme
 ```
 
 Observe some similar output in your shell:
@@ -166,7 +166,7 @@ Rollout may take a minute as the response states. To check in on it:
 kubectl -n cattle-system rollout status deploy/rancher
 ```
 
-You provided a bootstrap password, so navigate to https://rancher.homelab and enter that.
+You provided a bootstrap password, so navigate to https://rancher.homelab and enter that. This means you need DNS resolution!
 
 NOTE! As of July 2024, there is a bug if you are on k3s where the provisioned secret (i.e. bootstrap password) is not accepted as the valid password on first time login.
 

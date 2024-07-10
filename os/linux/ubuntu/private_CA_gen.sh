@@ -1,22 +1,24 @@
 #!/bin/bash
 
+# Prompt:
 # I want to have my own private certificate authority named "Andrew's Homelab".
 # I would also like to issue an ssl cert for various internal web services using my private CA.
 # Please lay out a bash script for me that will do this step by step, and mark up each line with a brief description of what that particular step does, as well as a short metaphor explaining the core concept to someone who may not be an expert.
 # Please call out the various command inputs as variables that can be referenced throughout the script.
 
 # Set variables
-CA_NAME="Andrew's Homelab"
-SERVICE_DOMAIN="example.com"
+CA_NAME="andrews_homelab"
+SERVICE_DOMAIN=".homelab"
 SERVICE_NAME="internal-service"
-CERT_VALIDITY_DAYS=365
+CERT_VALIDITY_DAYS=100000
 
-# Step 1: Create a private key for the Certificate Authority (CA)
-openssl genpkey -algorithm RSA -out "${CA_NAME}_CA.key" -aes256
+# Step 1: Create a private key for the Certificate Authority (CA) (w/o passphrase for flexibility and/or k8s)
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out "${CA_NAME}_CA.key"
+
 # Explanation: Generating a key for the CA is like creating a master key for a secure vault. This key will be used to sign other keys (certificates).
 
 # Step 2: Create a self-signed certificate for the CA using the private key
-openssl req -x509 -new -nodes -key "${CA_NAME}_CA.key" -sha256 -days $CERT_VALIDITY_DAYS -subj "/CN=${CA_NAME} CA" -out "${CA_NAME}_CA.crt"
+openssl req -x509 -new -nodes -key "${CA_NAME}_CA.key" -sha256 -days $CERT_VALIDITY_DAYS -subj "/CN=${CA_NAME} CA" -out "${CA_NAME}_root_CA.crt"
 # Explanation: This is like creating an official seal using the master key. It validates that the certificates issued by this CA are trustworthy.
 
 # Step 3: Generate a private key for the specific service
