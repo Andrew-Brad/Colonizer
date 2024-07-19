@@ -2,6 +2,14 @@
 
 [Setup Docs on the k3s Site](https://docs.k3s.io/installation/requirements?os=debian)
 
+## Update Packages
+
+It's a good idea to update all your packages on a fresh install:
+
+```bash
+sudo apt update && sudo apt upgrade -y;
+```
+
 ## Optional Step - Install Misc Tools
 
 ```bash

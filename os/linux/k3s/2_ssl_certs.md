@@ -7,7 +7,7 @@ We first need a self signed issuer resource instantiated in k8s. This issuer res
 `secretName` refers to a Kubernetes secret named andrews-homelab-root-ca of type `tls`. Provision that first in Rancher UI or CLI:
 
 ```bash
-kubectl create secret tls homelab-ca-key-pair --cert=rootCA.crt --key=rootCA.key --namespace cert-manager
+kubectl create secret tls andrews-homelab-root-ca --cert=rootCA.crt --key=rootCA.key --namespace cert-manager
 ```
 
  Some say to use `default` namespace, but I could only get this to work in the `cert-manager` namespace. It's easier to use cert files via Rancher UI.
@@ -27,23 +27,6 @@ spec:
 [Issuers](https://cert-manager.io/docs/concepts/issuer/) are scoped to a namespace. `ClusterIssuers` are required if you will be issuing Certificate objects out to different namespaces and services.
 
 ---
-
-Next, let's get a Certificate resource provisioned:
-
-```yaml
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: nginx-test-certificate
-  namespace: ab-scratch-resources-only
-spec:
-  secretName: nginx-test-certificate-secret
-  issuerRef:
-    name: homelab-ca-clusterissuer
-    kind: ClusterIssuer
-  dnsNames:
-   - nginx-hello.homelab
-```
 
 ---
  These aren't too useful unless you get a web page served over HTTPS and your browser handshakes successfully, so let's use this opportunity to provision an ingress controller as a reverse proxy so we can get a test service stood up, but also use that as a jumping off point for any new services you choose to deploy.
@@ -74,14 +57,14 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: ngxinx-test-cert
-  namespace: ab-scratch-resources-only
+  namespace: ab-sandbox
 spec:
   secretName: homelab-cert-tls
-  duration: 24h
+  duration: 48h
   renewBefore: 12h
   commonName: homelab
   dnsNames:
-    - nginx-hello.homelab
+    - hello.homelab
   issuerRef:
     name: homelab-ca-clusterissuer
     kind: ClusterIssuer
@@ -97,17 +80,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ngxinx-ingress
-  namespace: ab-scratch-resources-only
+  namespace: ab-sandbox
   annotations:
     cert-manager.io/cluster-issuer: homelab-ca-clusterissuer
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
   - hosts:
-    - nginx-hello.homelab
+    - hello.homelab
     secretName: ngxinx-test-cert
   rules:
-  - host: nginx-hello.homelab
+  - host: hello.homelab
     http:
       paths:
       - path: /
