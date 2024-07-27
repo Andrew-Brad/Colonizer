@@ -13,7 +13,7 @@ sudo apt update && sudo apt upgrade -y;
 ## Optional Step - Install Misc Tools
 
 ```bash
-sudo apt install tldr nfs-common htop powertop -y;
+sudo apt install nnn tldr nfs-common htop powertop -y;
 ```
 
 ## Optional - Prepare An Attached SSD As A k3s Data Directory
@@ -66,7 +66,7 @@ sudo nano /etc/fstab
 ```
 
 Add this line, replacing with correct UUID:
-`UUID=e6059791-e23b-43c4-86cf-e28db44c7e57 /mnt/ab-nvme-ssd ext4 defaults 0 2`
+`UUID=faaf7f47-1bbd-4691-83dd-4a519e986cdf /mnt/ab-nvme-ssd ext4 defaults 0 2`
 
 Verify your SSD is mounted:
 `df -h`
@@ -133,9 +133,6 @@ Cert-manager is required for various cert issuing/signing activities within Ranc
 
 ```bash
 kubectl create namespace cert-manager
-```
-
-```bash
 kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.crds.yaml
 helm repo add jetstack https://charts.jetstack.io
 helm repo update

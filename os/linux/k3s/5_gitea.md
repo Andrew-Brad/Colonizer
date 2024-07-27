@@ -120,7 +120,7 @@ kubectl get ingress
 Todo:
 Verify DNS from within the pod:
 `kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh`
-`nslookup...`
+`nslookup my-postgresql-postgresql.default.svc.cluster.local`
 
 ---
 
