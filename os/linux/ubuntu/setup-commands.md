@@ -4,14 +4,24 @@
 
 ```bash
 sudo apt update && sudo apt upgrade -y;
-sudo apt install tldr nfs-common htop powertop -y;
+sudo apt install tldr nfs-common unzip libarchive-tools fontconfig htop powertop -y;
 sudo snap install tldr -y;
+```
+
+## Fonts
+
+Requires a couple packages from the previous section.
+
+```bash
+mkdir -p ~/.local/share/fonts && wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/DroidSansMono.zip | bsdtar -xvf- -C ~/.local/share/fonts && fc-cache -fv
 ```
 
 ## Get NFS Shares Online
 
+If needed, permissions might need to be configured on your NFS host.
+
 ```bash
-sudo mkdir /home/user/homelab_nfs;
+(sudo?) mkdir /home/user/homelab_nfs;
 sudo mount -t nfs 192.168.1.X:/nas_target_dir /home/user/homelab_nfs
 echo "192.168.1.X:/volume1/nas_target_dir /home/user/homelab_nfs nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0" | sudo tee -a /etc/fstab
 ```

@@ -8,6 +8,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # -y (auto accept prompts and license agreements)
 
 # Gotta Have It
+choco install nerd-fonts-droidsansmono -y
 choco install firefox -y
 choco install protonvpn -y
 choco install everything -y
