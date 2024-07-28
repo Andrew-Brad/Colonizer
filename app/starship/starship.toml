@@ -2,6 +2,7 @@
 # Ex: cp starship.toml ~/.config/starship.toml
 
 format = """
+$sudo\
 $username\
 $hostname\
 $directory\
@@ -24,8 +25,9 @@ disabled = true
 
 [sudo]
 disabled = false
-style = "bold blue"
-symbol = '!'
+format = "\uf2bb ($style)"
+style = "bold yellow"
+# symbol = "\ueaad"
 
 [directory]
 style = "blue"
@@ -33,11 +35,18 @@ read_only = " "
 truncation_length = 4
 truncate_to_repo = false
 
+[git_branch]
+format = "[$symbol $branch ]($style) "
+symbol = "\ue725"
+style = "bold-cyan"
+
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "bold cyan"
 ahead = "\uf175$count"
 behind = "\uf175$count"
+conflicted = "!"
+up_to_date = "\uedf6"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -56,11 +65,6 @@ symbol = " "
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](white)"
-
-[git_branch]
-symbol = "\ue725"
-format = "[on $branch $symbol]($style) "
-style = "bright-cyan"
 
 [jobs]
 disabled = true
