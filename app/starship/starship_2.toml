@@ -1,0 +1,96 @@
+# ~/.config/starship/starship.toml
+
+command_timeout = 1500
+scan_timeout = 500
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Change the default prompt format
+format = """\
+[╭─](blue) $os\
+$all[╰──](blue)$character"""
+
+# Change the default prompt characters
+[character]
+success_symbol  = "[](blue)"
+error_symbol    = "[](red)"
+vicmd_symbol    = "[V](green)"
+
+[os]
+format = '[$symbol](bold blue) '
+disabled = false
+
+[os.symbols]
+Windows = ""
+Arch = "󰣇"
+Ubuntu = ""
+Macos = "󰀵"
+Manjaro = ""
+
+# Shows the username
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style)"
+show_always = true
+
+[directory]
+truncation_length = 2
+truncation_symbol = ".../"
+home_symbol = "󰋞 ~"
+read_only_style = "red"
+style = "bold blue"
+read_only = "RO"
+format = " at [$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = "󰊢"
+format = "on [$symbol $branch]($style) "
+truncation_length = 4
+truncation_symbol = ".../"
+style = "bold cyan"
+
+[git_status]
+format = '\($all_status$ahead_behind\) '
+conflicted = "[conf](red)"
+up_to_date = "[ok](bold green)"
+untracked = "[U++${count} ](purple)"
+ahead = "[a${count} ](yellow)"
+diverged = "[div${ahead_count} b${behind_count} ](purple)"
+behind = "[b${count} ](orange)"
+stashed = "[s++${count} ](purple)"
+modified = "[M++${count} ](yellow)"
+staged = "[S++$count ](green)"
+renamed = "[rn](bold yellow)"
+deleted = "[D++${count} ](bold red)"
+
+[terraform]
+format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
+
+[vagrant]
+format = "via [ vagrant $version]($style) "
+
+[docker_context]
+format = "via [ $context](bold blue) "
+
+[helm]
+format = "via [ $version](bold purple) "
+
+[python]
+symbol = "󰌠"
+python_binary = "python3"
+
+[nodejs]
+format = "via [󰎙 $version](bold green) "
+disabled = false
+
+[ruby]
+format = "via [ $version]($style) "
+
+[kubernetes]
+format = 'on [ $context\($namespace\)](bold purple) '
+disabled = false
+[kubernetes.context_aliases]
+"clcreative-k8s-staging" = "cl-k8s-staging"
+"clcreative-k8s-production" = "cl-k8s-prod"

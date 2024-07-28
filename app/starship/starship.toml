@@ -12,6 +12,31 @@ $cmd_duration $jobs $time\
 $line_break\
 $character"""
 
+[username]
+disabled = false
+style_user = "bright-purple"
+
+[hostname]
+disabled = true
+
+[sudo]
+disabled = false
+style = "bold blue"
+symbol = '!'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold cyan"
+ahead = "\uf175$count"
+behind = "\uf175$count"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+disabled = false
+
 [nodejs]
 format = "[$symbol($version )]($style)"
 
@@ -41,17 +66,6 @@ style = "bold red"
 number_threshold = 1
 format = "[$symbol]($style)"
 
-[git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "cyan"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "bright-black"
-
-[git_metrics]
-disabled = false
-
 [cmd_duration]
 format = "[$duration]($style)"
 style = "yellow"
@@ -72,15 +86,3 @@ when = "ps aux | grep stunnel | grep -v grep"
 command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
 style = "red"
 format = "[TUNNEL OPEN for $output]($style)"
-
-[sudo]
-disabled = false
-style = "bold blue"
-symbol = '!'
-
-[hostname]
-disabled = true
-
-[username]
-disabled = false
-style_user = "bright-purple"
