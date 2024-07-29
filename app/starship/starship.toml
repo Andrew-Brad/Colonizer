@@ -36,9 +36,9 @@ truncation_length = 4
 truncate_to_repo = false
 
 [git_branch]
-format = "[$symbol $branch ]($style) "
+format = "[$symbol $branch ]($style)"
 symbol = "\ue725"
-style = "bold-cyan"
+style = "bold cyan"
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
@@ -64,7 +64,7 @@ symbol = " "
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
-vicmd_symbol = "[❮](white)"
+# vicmd_symbol = "[❮](white)"
 
 [jobs]
 disabled = true
@@ -84,7 +84,7 @@ symbol = " "
 symbol = " "
 
 [time]
-disabled = false
+disabled = true
 style = "bold white"
 format = "[$time]($style)"
 
