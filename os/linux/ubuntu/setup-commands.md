@@ -4,7 +4,7 @@
 
 ```bash
 sudo apt update && sudo apt upgrade -y;
-sudo apt install tldr nfs-common unzip libarchive-tools fontconfig htop powertop -y;
+sudo apt install bash-completion nfs-common unzip libarchive-tools fontconfig tldr htop powertop -y;
 sudo snap install tldr -y;
 ```
 
