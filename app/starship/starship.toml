@@ -18,7 +18,9 @@ $character"""
 
 [username]
 disabled = false
+format = "[$user]($style) "
 style_user = "italic purple"
+# style_root = "bold red"
 
 [hostname]
 disabled = true
