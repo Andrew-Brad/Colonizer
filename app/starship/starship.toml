@@ -22,6 +22,8 @@ style_user = "italic purple"
 
 [hostname]
 disabled = true
+format = "[$ssh_symbol$hostname]($style) "
+style = "dimmed white"
 
 [sudo]
 disabled = false
