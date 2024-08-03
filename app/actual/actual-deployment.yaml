@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: actual-app
+  labels:
+    app: actual
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: actual
+  template:
+    metadata:
+      labels:
+        app: actual
+    spec:
+      containers:
+      - name: actual
+      # Version 24.7.0
+        image: actualbudget/actual-server:latest
+        ports:
+        - containerPort: 5006
+        volumeMounts:
+        - name: actual-data
+          mountPath: /app/data
+      volumes:
+      - name: actual-data
+        persistentVolumeClaim:
+          claimName: actual-data-pvc

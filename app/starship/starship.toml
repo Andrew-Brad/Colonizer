@@ -44,17 +44,17 @@ format = "[$symbol $branch ]($style)"
 symbol = "\ue725"
 style = "bold cyan"
 
-[git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "bold cyan"
-ahead = "\uf175$count"
-behind = "\uf175$count"
-conflicted = "!"
-up_to_date = "\uedf6"
-
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold cyan"
+ahead = "\uf176$count"
+behind = "\uf175$count"
+conflicted = "!"
+up_to_date = "\uedf6"
 
 [git_metrics]
 disabled = false
