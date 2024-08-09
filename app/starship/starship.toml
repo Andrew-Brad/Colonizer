@@ -34,8 +34,10 @@ style = "bold yellow"
 # symbol = "\ueaad"
 
 [directory]
+format = "[$path]($style) [$read_only]($read_only_style) "
 style = "blue"
-read_only = " "
+read_only = "\ueda4"
+read_only_style = "bright-blue"
 truncation_length = 4
 truncate_to_repo = false
 

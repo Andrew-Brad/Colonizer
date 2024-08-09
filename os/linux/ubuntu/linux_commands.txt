@@ -1,6 +1,9 @@
 # update one-liner
 sudo apt update && sudo apt upgrade -y
 
+# install a big nanorc repo automatically:
+curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
+
 # discover all storage devices attached to your system
 lsblk 
 
@@ -36,11 +39,6 @@ sudo du -hsx /* | sort -rh | head -n 40
 # -a archive flag: The archive mode behaves like the recursive mode (-r) but keeps all file permissions, symbolic links, file ownership, etc.
 # -v combined with --progress shows a more detailed progress output
 rsync -av --progress /media/sourcefolder/PLEX /media/destinationfolder/PLEX
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # private/public ssh keys-pair
 ssh-keygen -t ecdsa -b 521

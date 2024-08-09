@@ -8,6 +8,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # -y (auto accept prompts and license agreements)
 
 # Gotta Have It
+choco install microsoft-windows-terminal -y
 choco install nerd-fonts-droidsansmono -y
 choco install firefox -y
 choco install protonvpn -y
@@ -18,7 +19,7 @@ choco install signal -y
 choco install steam -y
 choco install discord -y
 # as of this writing, 1password8 is not on choco packages, so manual install. Copy over .gitconfig so that 1password can handle ssh
-# choco install 1password 
+# choco install 1password
 choco install vcredist2010 -y
 choco install dropbox -y
 choco install putty -y
