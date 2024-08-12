@@ -1,0 +1,72 @@
+# kubectl apply -f k3s-install.yaml
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ntfy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ntfy
+  namespace: ntfy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ntfy
+  template:
+    metadata:
+      labels:
+        app: ntfy
+    spec:
+      containers:
+      - name: ntfy
+        image: binwiederhier/ntfy:v2.11.0
+        ports:
+        - containerPort: 80
+          name: http
+        env:
+        - name: NTFY_LOGLEVEL
+          value: "info"
+        args: ["serve", "--listen-http", "0.0.0.0:80"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ntfy
+  namespace: ntfy
+spec:
+  selector:
+    app: ntfy
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ntfy-ingress
+  namespace: ntfy
+  annotations:
+    cert-manager.io/cluster-issuer: "homelab-ca-clusterissuer"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: ntfy.homelab
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ntfy
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - ntfy.homelab
+    secretName: ntfy-tls
