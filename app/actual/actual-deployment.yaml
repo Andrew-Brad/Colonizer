@@ -27,3 +27,12 @@ spec:
       - name: actual-data
         persistentVolumeClaim:
           claimName: actual-data-pvc
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: homelab-availability
+                operator: In
+                values:
+                - "high"
