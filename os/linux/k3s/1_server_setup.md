@@ -111,6 +111,10 @@ echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+## Apply My Homelab Label
+
+`kubectl label node ubuntu homelab-availability=high`
+
 ## Optional Step - Rancher Install
 
 [Reference Doc](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade#single-node-kubernetes-install)

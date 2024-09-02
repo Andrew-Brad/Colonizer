@@ -24,7 +24,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Shortcuts
-alias dirdropbox="cd ~/Documents/Dropbox"
 alias dirdownloads="cd ~/Downloads"
 alias dirdesktop="cd ~/Desktop"
 alias dirgit='if [[ "$OSTYPE" == "linux-gnu"* ]]; then cd ~/git; elif [[ "$OSTYPE" == "darwin"* ]]; then cd ~/Desktop/git; elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then cd /c/Users/$USER/Desktop/git; else echo "Unknown OS"; fi'
