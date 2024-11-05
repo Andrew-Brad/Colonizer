@@ -1,6 +1,6 @@
 
 # Copy this file to ~/.inputrc
-# cp "./os/linux/.inputc" ~
+# cp "./os/linux/.inputrc" ~
 
 # Respect default shortcuts.
 $include /etc/inputrc
