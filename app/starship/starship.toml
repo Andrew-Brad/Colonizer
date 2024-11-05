@@ -1,5 +1,7 @@
 # Copy this to ~/.config/starship.toml
-# Ex: cp starship.toml ~/.config/starship.toml
+# Ex: cp app/starship/starship.toml ~/.config/starship.toml
+# Alternatively you can set your active starship.toml to point to this file:
+# export STARSHIP_CONFIG=app/starship/starship.toml
 
 format = """
 $sudo\
