@@ -3,10 +3,11 @@
 # cp "./os/linux/.inputrc" ~
 
 # Respect default shortcuts.
+# Comment if on Kubuntu!
 $include /etc/inputrc
 
-## arrow up
+# arrow up
 "\e[A": history-search-backward
 
-## arrow down
+# arrow down
 "\e[B": history-search-forward
