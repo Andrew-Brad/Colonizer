@@ -31,13 +31,13 @@ style = "dimmed white"
 
 [sudo]
 disabled = false
-format = "\uf2bb ($style)"
-style = "bold yellow"
+format = "\uf2c2 ($style) "
+style = "bold blue"
 # symbol = "\ueaad"
 
 [directory]
 format = "[$path]($style) [$read_only]($read_only_style) "
-style = "blue"
+style = "bold blue"
 read_only = "\ueda4"
 read_only_style = "bright-blue"
 truncation_length = 4
@@ -45,23 +45,30 @@ truncate_to_repo = false
 
 [git_branch]
 format = "[$symbol $branch ]($style)"
-symbol = "\ue725"
-style = "bold cyan"
+symbol = "\ue0a0"
+style = "bold purple"
 
+# https://starship.rs/config/#git-status
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
+# https://starship.rs/config/#git-status
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
+# all_status: $conflicted$stashed$deleted$renamed$modified$typechanged$staged$untracked
 style = "bold cyan"
-ahead = "\uf176$count"
-behind = "\uf175$count"
-conflicted = "!"
-up_to_date = "\uedf6"
+ahead = " $count"
+behind = " $count"
+conflicted = "❗"
+up_to_date = " \uedf6 "
+# up_to_date = " ✅"
+modified = "󰷬 " # "!"
+staged = "" # "+"
 
+# https://starship.rs/config/#git-metrics
 [git_metrics]
-disabled = false
+disabled = true
 
 [nodejs]
 format = "[$symbol($version )]($style)"
