@@ -61,10 +61,10 @@ style = "bold cyan"
 ahead = " $count"
 behind = " $count"
 conflicted = "❗"
-up_to_date = " \uedf6 "
-# up_to_date = " ✅"
-modified = "󰷬 " # "!"
-staged = "" # "+"
+# up_to_date = " \uedf6 "
+up_to_date = " ✅"
+modified = "📝 " # "!"
+staged = "📝 " # "+"
 
 # https://starship.rs/config/#git-metrics
 [git_metrics]
@@ -89,8 +89,8 @@ number_threshold = 1
 format = "[$symbol]($style)"
 
 [cmd_duration]
-format = "[$duration]($style)"
-style = "yellow"
+format = "⏱️  [$duration]($style)"
+style = "bold yellow"
 
 [memory_usage]
 symbol = " "
