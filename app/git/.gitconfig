@@ -159,3 +159,19 @@
 [fetch]
 
 	prune = true
+
+	[user]
+	email = me@andrewbrad.me
+	name = Andrew
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUyKp/YgpX/HsYzHnNWZbD2a9L1OcWpc3J+q++nW1Rr
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  # might vary by OS, check the entry in 1 password
+  program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+  # false by default, but some repos have signing enabled
+  gpgsign = false
