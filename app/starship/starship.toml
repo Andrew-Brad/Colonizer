@@ -31,21 +31,20 @@ style = "dimmed white"
 
 [sudo]
 disabled = false
-format = "\uf2c2 ($style) "
+format = "🪪 ($style) "
 style = "bold blue"
-# symbol = "\ueaad"
 
 [directory]
 format = "[$path]($style) [$read_only]($read_only_style) "
-style = "bold blue"
-read_only = "\ueda4"
+style = "italic blue"
+read_only = "📖"
 read_only_style = "bright-blue"
 truncation_length = 4
 truncate_to_repo = false
 
 [git_branch]
 format = "[$symbol $branch ]($style)"
-symbol = "\ue0a0"
+symbol = "🌳"
 style = "bold purple"
 
 # https://starship.rs/config/#git-status
@@ -58,13 +57,13 @@ style = "bright-black"
 format = '([\[$all_status$ahead_behind\]]($style) )'
 # all_status: $conflicted$stashed$deleted$renamed$modified$typechanged$staged$untracked
 style = "bold cyan"
-ahead = " $count"
-behind = " $count"
+ahead = " $count ⬆️"
+behind = " $count ⬇️"
 conflicted = "❗"
 # up_to_date = " \uedf6 "
-up_to_date = " ✅"
-modified = "📝 " # "!"
-staged = "📝 " # "+"
+up_to_date = "🔹✅"
+modified = "📝" # "!"
+staged = " " # "+"
 
 # https://starship.rs/config/#git-metrics
 [git_metrics]
