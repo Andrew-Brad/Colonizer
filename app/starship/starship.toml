@@ -57,13 +57,14 @@ style = "bright-black"
 format = '([\[$all_status$ahead_behind\]]($style) )'
 # all_status: $conflicted$stashed$deleted$renamed$modified$typechanged$staged$untracked
 style = "bold cyan"
-ahead = " $count ⬆️ "
-behind = " $count ⬇️ "
+ahead = "$count⬆️ "
+behind = "$count⬇️ "
 conflicted = "❗"
 # up_to_date = " \uedf6 "
 up_to_date = "✅"
 modified = "📝🔹" # "!"
 staged = " " # "+"
+diverged = "🔃"
 
 # https://starship.rs/config/#git-metrics
 [git_metrics]
@@ -88,8 +89,10 @@ number_threshold = 1
 format = "[$symbol]($style)"
 
 [cmd_duration]
+disabled = false
 format = "⏱️  [$duration]($style)"
 style = "bold yellow"
+min_time = 2_000
 
 # https://starship.rs/config/#memory-usage
 [memory_usage]
