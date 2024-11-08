@@ -63,8 +63,10 @@ conflicted = "❗"
 # up_to_date = " \uedf6 "
 up_to_date = "✅"
 modified = "📝🔹" # "!"
-staged = " " # "+"
+staged = "📑🔹" # "+"
 diverged = "🔃"
+# deleted = "✘"
+deleted = "🗑️ 🔹"
 
 # https://starship.rs/config/#git-metrics
 [git_metrics]
