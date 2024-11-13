@@ -173,5 +173,6 @@
   program = "/opt/1Password/op-ssh-sign"
 
 [commit]
-  # false by default, but some repos have signing enabled
+  # false by default, but some repos have signing enabled, see 
+  # to enable in a given repo, cd to the repo and run: git config commit.gpgsign true
   gpgsign = false

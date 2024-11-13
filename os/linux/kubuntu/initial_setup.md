@@ -3,12 +3,16 @@ cd ~/Desktop/Git &&
 git clone https://github.com/Andrew-Brad/Colonizer.git;
 
 # Apps and software
-sudo snap install --classic code;
+
 sudo snap install termius-app signal-desktop spotify;
 
-# 1Password
-## Snaps don't work with the SSH Agent, so stick with a manual install:
-https://support.1password.com/install-linux/#get-1password-for-linux
+## VS Code
+
+Had issues with the snap install (file dialog crashes and such). Install natively from the site.
+
+## 1Password
+
+Snaps don't work with the SSH Agent, so stick with a [manual install](https://support.1password.com/install-linux/#get-1password-for-linux).
 
 # Starship
 ## Also not a great experience using snaps. Do a manual install
