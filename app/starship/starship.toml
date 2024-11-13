@@ -67,6 +67,9 @@ staged = "📑🔹" # "+"
 diverged = "🔃"
 # deleted = "✘"
 deleted = "🗑️ 🔹"
+renamed = "📝🔹"
+# untracked = "?"
+untracked = ""
 
 # https://starship.rs/config/#git-metrics
 [git_metrics]
