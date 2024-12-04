@@ -18,6 +18,12 @@ Snaps don't work with the SSH Agent, so stick with a [manual install](https://su
 ## Also not a great experience using snaps. Do a manual install
 https://starship.rs/guide/#step-1-install-starship
 
+# Albert
+
+Brings in an outstanding omnibar into your system that is similar to KRunner, Windows Search, and Spotlight on MacOS and the like.
+
+[https://albertlauncher.github.io/](Albert)
+
 # docker:
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Add Docker's official GPG key:
