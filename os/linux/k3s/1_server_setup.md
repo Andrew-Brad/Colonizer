@@ -13,7 +13,7 @@ sudo apt update && sudo apt upgrade -y;
 ## Optional Step - Install Misc Tools
 
 ```bash
-sudo apt install nnn tldr nfs-common htop powertop -y;
+sudo apt install net-tools tldr nfs-common htop powertop nnn -y;
 ```
 
 ## Optional - Prepare An Attached SSD As A k3s Data Directory
