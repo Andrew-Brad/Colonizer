@@ -1,0 +1,87 @@
+# 1. ClusterIssuer: Provides CA for signing certificates
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: homelab-ca-clusterissuer
+spec:
+  ca:
+    secretName: andrews-homelab-root-ca
+---
+# 2. Certificate: Requests a TLS certificate
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ngxinx-test-cert
+  namespace: ab-sandbox
+spec:
+  secretName: homelab-cert-tls
+  duration: 48h
+  renewBefore: 12h
+  commonName: homelab
+  dnsNames:
+    - hello.homelab
+  issuerRef:
+    name: homelab-ca-clusterissuer
+    kind: ClusterIssuer
+---
+# 3. Deployment: Deploys the NGINX container
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: ab-sandbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+---
+# 4. Service: Exposes NGINX pods internally
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: ab-sandbox
+spec:
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+# 5. Ingress: Routes HTTPS traffic to nginx-service backend
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ngxinx-ingress
+  namespace: ab-sandbox
+  annotations:
+    cert-manager.io/cluster-issuer: homelab-ca-clusterissuer
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+    - hosts:
+        - hello.homelab
+      secretName: homelab-cert-tls
+  rules:
+    - host: hello.homelab
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80

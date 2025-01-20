@@ -10,7 +10,11 @@ We first need a self signed issuer resource instantiated in k8s. This issuer res
 kubectl create secret tls andrews-homelab-root-ca --cert=rootCA.crt --key=rootCA.key --namespace cert-manager
 ```
 
- Some say to use `default` namespace, but I could only get this to work in the `cert-manager` namespace. It's easier to use cert files via Rancher UI.
+It should live in the `default` namespace.  It's easier to use cert files via Rancher UI.
+
+If you've run through this multiple times already and want a single file to stand up the nginx service, just `kubectl apply -f 2_ssl.yml`.
+
+[2_ssl.yml](2_ssl.yml)
 
 Next up, provision your `ClusterIssuer`:
 
