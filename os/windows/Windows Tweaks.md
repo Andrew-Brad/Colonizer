@@ -18,6 +18,10 @@ Get-DnsClientServerAddress
 
 Set-DnsClientServerAddress -InterfaceAlias Ethernet -ServerAddresses "1.1.1.1","1.0.0.1"
 
-##### Enable WSL
+## Enable WSL
 
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+## Enable Some Powershell Scripts
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
