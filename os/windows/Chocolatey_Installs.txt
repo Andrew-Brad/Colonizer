@@ -32,8 +32,8 @@ choco install deluge -y
 # Dev Tools
 choco install vscode -y
 choco install git.install -y
-choco install poshgit -y
 choco install azure-cli -y
+# choco install poshgit -y # now using starship
 choco install vcredist2012 -y
 # choco install dotnetcore-sdk -y # Visual Studio managed
 choco install python -y
