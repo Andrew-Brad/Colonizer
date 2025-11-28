@@ -2,6 +2,24 @@
 
 <https://mywindowshub.com/enable-disable-aero-shake-windows-10/>
 
+## Install Powershell 7
+
+From [Ardalis](https://ardalis.com/install-nerd-fonts-terminal-icons-pwsh-7-win-11/)
+
+(and don't forget to update your Terminal app with that default shell)
+
+```pwsh
+$PSVersionTable.PSVersion
+```
+
+```pwsh
+winget install --id Microsoft.PowerShell --source winget
+```
+
+### Nerd Fonts with Powershell 7
+
+
+
 ## Gaming FPS
 
 Lots of guides out there on quick windows settings to change to improve FPS
