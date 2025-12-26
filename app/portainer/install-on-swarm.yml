@@ -1,6 +1,6 @@
-# this file is what was downloaded during the initial portainer install scriptm
-version: '3.2'
-
+# this file is what was downloaded during the initial portainer install script
+# must run `docker swarm init` first
+# then navigate to https://localhost:9443
 services:
   agent:
     image: portainer/agent:2.19.1
@@ -35,3 +35,6 @@ networks:
   agent_network:
     driver: overlay
     attachable: true
+
+volumes:
+  portainer_data:
