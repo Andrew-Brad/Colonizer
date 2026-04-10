@@ -18,11 +18,15 @@ winget install --id Microsoft.PowerShell --source winget
 
 ### Nerd Fonts with Powershell 7
 
+No 'true' automated install works for these, but there's a pretty useful helper script to automate most of the tedium: https://github.com/jpawlowski/nerd-fonts-installer-PS
 
+## Dev Tools
 
-## Gaming FPS
+```pwsh
+winget install --id=astral-sh.uv  -e
+```
 
-Lots of guides out there on quick windows settings to change to improve FPS
+Followed by a `uv python install`.
 
 ## DNS
 
