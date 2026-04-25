@@ -1,6 +1,4 @@
-# Turn off the stupid Aero shake feature
-
-<https://mywindowshub.com/enable-disable-aero-shake-windows-10/>
+# Win 11 Setup
 
 ## Install Powershell 7
 
@@ -26,7 +24,19 @@ No 'true' automated install works for these, but there's a pretty useful helper 
 winget install --id=astral-sh.uv  -e
 ```
 
-Followed by a `uv python install`.
+It's cleaner to install python globally for the machine and get it in your PATH. A `uv python install` won't do this as it's designed for projects and `venv`.
+
+`winget install -e --id Python.Python.3.12 --scope machine` (or latest version as needed)
+
+## WSL
+
+Open terminal as Admin:
+
+```pwsh
+wsl --install
+```
+
+There are scripts in this repo that make it easy to toggle the Windows/Hyper-V features for software applications that conflict with them.
 
 ## DNS
 
