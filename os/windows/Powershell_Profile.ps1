@@ -15,6 +15,7 @@ if (-not (Test-Path $dst) -or (Get-Item $dst).Length -eq 0) {
 Echo "Profile loaded at $profile.  Type notepad (dollar)profile to edit."
 
 Set-Alias -Name tf -Value terraform
+Set-Alias -Name cl -Value Clear-Host
 
 Function binobj {
   Get-ChildItem .\ -include bin, obj -Recurse | foreach ($_) { remove-item $_.fullname -Force -Recurse }
