@@ -1,0 +1,28 @@
+# Managed by Colonizer -> deploy to %USERPROFILE%\.ssh\config
+#
+# PUBLIC REPO. Mechanism only.
+# No hostnames, usernames, ports, or key material belong in this file.
+# Host-specific blocks live in ~/.ssh/config.d/*.conf, which is gitignored
+# here and never committed.
+#
+# Include resolves relative to ~/.ssh (NOT the current working directory),
+# and a glob matching zero files is not an error -- so this line is safe on a
+# fresh machine before any private config exists.
+Include config.d/*.conf
+
+Host *
+    # 1Password's SSH agent listens on a Windows named pipe.
+    #
+    # Write it with FORWARD slashes. The form shown in most docs --
+    # \\.\pipe\openssh-ssh-agent -- does NOT work here: ssh_config consumes
+    # the backslashes as escapes, the agent is never contacted, and auth fails
+    # with a bare "Permission denied (publickey,password)" that looks like a
+    # key problem rather than a parsing one. Verified on OpenSSH_for_Windows_9.5p2.
+    IdentityAgent //./pipe/openssh-ssh-agent
+
+    # All keys come from 1Password; never persist anything into a local agent.
+    AddKeysToAgent no
+
+    # Homelab boxes sit behind a switch that idles connections out.
+    ServerAliveInterval 30
+    ServerAliveCountMax 4

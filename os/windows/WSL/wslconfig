@@ -1,0 +1,12 @@
+# Colonizer global WSL2 config (copied to %USERPROFILE%\.wslconfig on Windows)
+# Reference: https://learn.microsoft.com/windows/wsl/wsl-config
+#
+# Scope: applies to ALL WSL2 distros on this machine. Distinct from wsl.conf
+# (per-distro, lives at /etc/wsl.conf inside Ubuntu).
+
+[wsl2]
+# Mirrored networking — WSL2 shares Windows' network stack so localhost
+# forwarding works reliably in both directions. Without this, Windows-side
+# processes hitting services in WSL (e.g. localhost:5445 → Postgres in
+# Docker-in-WSL) get intermittent connection refused under load.
+networkingMode=mirrored

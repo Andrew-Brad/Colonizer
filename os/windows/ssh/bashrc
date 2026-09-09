@@ -1,0 +1,42 @@
+# Managed by Colonizer -> deploy to %USERPROFILE%\.bashrc (Git Bash)
+#
+# PUBLIC REPO. Mechanism only -- no hosts, users, or secrets.
+
+# --- native Windows OpenSSH shim -------------------------------------------
+#
+# Git Bash ships its own MSYS build of OpenSSH at /usr/bin/ssh, and it lands
+# on PATH *before* the native Windows client. MSYS ssh can only talk to a
+# Unix-domain socket named by $SSH_AUTH_SOCK; it has no way to reach a Windows
+# named pipe. 1Password's agent is a named pipe:
+#
+#     \\.\pipe\openssh-ssh-agent
+#
+# So every agent-backed ssh from Git Bash fails with:
+#
+#     Could not open a connection to your authentication agent.
+#
+# ...while the exact same command in PowerShell works, because PowerShell
+# resolves ssh to C:\Windows\System32\OpenSSH\ssh.exe. This is a binary
+# selection problem, not a 1Password problem.
+#
+# Fix: route the agent-dependent tools to the native client.
+#
+# Two deliberate choices, both learned the hard way:
+#
+#   1. FUNCTIONS, not aliases. Aliases are not expanded in non-interactive
+#      shells (script runners, CI, agent tooling) -- exactly where this bites.
+#
+#   2. The path is INLINED in every function body rather than held in a shared
+#      variable. Tooling that snapshots a shell session (Claude Code does this)
+#      serializes function *definitions* via eval and replays them in a fresh
+#      process, but does not carry plain non-exported variables. A function
+#      body referencing "$_WIN_OPENSSH/ssh.exe" then expands to "/ssh.exe":
+#          bash: /ssh.exe: No such file or directory
+#      Inlining is immune to that replay. Verbose, but it survives.
+if [ -x "/c/Windows/System32/OpenSSH/ssh.exe" ]; then
+    ssh()         { "/c/Windows/System32/OpenSSH/ssh.exe"         "$@"; }
+    scp()         { "/c/Windows/System32/OpenSSH/scp.exe"         "$@"; }
+    sftp()        { "/c/Windows/System32/OpenSSH/sftp.exe"        "$@"; }
+    ssh-add()     { "/c/Windows/System32/OpenSSH/ssh-add.exe"     "$@"; }
+    ssh-keyscan() { "/c/Windows/System32/OpenSSH/ssh-keyscan.exe" "$@"; }
+fi
