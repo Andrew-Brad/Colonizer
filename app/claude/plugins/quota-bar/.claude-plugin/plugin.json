@@ -1,0 +1,6 @@
+{
+  "name": "quota-bar",
+  "version": "0.1.0",
+  "description": "Compact color-coded bar above the prompt: 5-hour quota used and time until it resets",
+  "types": "./types/index.d.ts"
+}

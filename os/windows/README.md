@@ -57,3 +57,21 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 ## Enable Some Powershell Scripts
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+## Claude Code
+
+### Load the repo-managed plugins
+
+Add to the `env` block of `%USERPROFILE%\.claude\settings.json` (create the block if missing), then restart Claude Code:
+
+```json
+"env": {
+  "CLAUDE_CODE_PLUGIN_DIRS": "C:\\Users\\Andrew\\Desktop\\Git\\Colonizer\\app\\claude\\plugins\\quota-bar"
+}
+```
+
+This loads plugins straight from this repo (no copy step). Separate additional plugin folders with `;`. Details and verification: [claude-plugins-onboarding.md](../../app/claude/claude-plugins-onboarding.md).
+
+### Install the repo-managed skills
+
+See [claude-skills-onboarding.md](../../app/claude/claude-skills-onboarding.md).
