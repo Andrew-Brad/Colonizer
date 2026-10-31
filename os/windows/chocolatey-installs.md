@@ -38,6 +38,7 @@ choco install deluge -y
 ### Dev Tools
 
 Note that we no longer install dotnetsdk from here, it is managed by `dotnetup`.
+Python is also not installed from here: use the winget machine-scope install + `uv` in the [README](README.md#dev-tools). (pip ships with Python.)
 
 choco install vscode azure-cli git.install -y
 choco install vcredist2012 -y
@@ -45,8 +46,6 @@ choco install sourcetree -y
 choco install dbeaver -y
 choco install fiddler -y
 choco install nodejs -y
-choco install python -y
-choco install pip -y
 choco install terraform -y
 choco install 7zip.install -y
 choco install winrar -y
