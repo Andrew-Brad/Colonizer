@@ -12,10 +12,13 @@ A one-line, color-coded bar above the prompt showing how much of the 5-hour rate
 and how long until it resets:
 
 ```
-5h ████░░░░░░ 42% · 2h13m left
+█░░░░░░░░░░┃░░░░░░ 🔋 4% 5h · TTL 1:52
 ```
 
 - Green under 50%, yellow from 50%, red from 80%.
+- `┃` is the pace marker: where usage would be if spread evenly across the 5h window.
+- 🔋 when usage is ≥20 points behind pace, 🔥 when ≥20 points ahead, blank in between.
+- `TTL` (time until reset, `H:MM`) turns bold yellow under 30 minutes.
 - Updates whenever the API reports a whole-point change, and re-reads every 30s so the countdown keeps
   moving while idle.
 - Hidden when the session has no 5-hour window (an API key rather than a subscription), or before the
