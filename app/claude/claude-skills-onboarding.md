@@ -1,18 +1,45 @@
 # Claude Code Skills (user-level)
 
-Goal: install the repo-managed Claude Code skills into `~/.claude/skills/`, so they're available in
-every Claude Code session on this machine, including Remote Control sessions opened from a phone.
+Goal: get user-level skills into `~/.claude/skills/`, so every Claude Code session has them, including
+Remote Control sessions opened from a phone.
 
-Source of truth: `app/claude/skills/`. Change skills here first, then re-copy.
+Two sources:
+- Third-party skills from skills.sh, installed with the `skills` CLI (section 1).
+- Repo-managed skills in `app/claude/skills/`, copied in (section 2). Change them here first, then re-copy.
 
-## book-notes
+## 1. Third-party skills (skills.sh)
+
+`skills.sh` runs through `npx`.
+
+### mattpocock/skills
+
+<https://www.skills.sh/mattpocock/skills>
+
+Some of these overlap with project skills (ADRs, planning, triage).
+
+```bash
+# For all of them:
+npx skills add mattpocock/skills
+
+# If you want to handpick:
+npx skills@latest add mattpocock/skills -g -a claude-code --skill <name> [--skill <name> ...]
+npx skills list -g
+```
+
+Notes:
+- `-g` installs to `~/.claude/skills/`. Without it the skills go into the current repo's `.claude/skills/`.
+- Leave off `--skill` to get an interactive picker.
+- Update with `npx skills update -g`.
+- Some skills have a setup step (e.g. where issues live). Run it once per machine.
+
+## 2. Repo-managed skills: book-notes
 
 Turns photos of book pages into per-book notes pages in Anytype. The phone saves photos to
 `SynologyDrive/Photos/BookNotes/<book-slug>/`. Claude transcribes them and appends the text to
 `<Title> — Book Notes` in Anytype, skipping duplicates, then deletes each photo once the write is
 verified.
 
-### 1. Prerequisites
+### Step 1: Prerequisites
 
 - Anytype desktop app installed and running (the skill uses its local API on `127.0.0.1:31009`).
 - Synology Drive syncing `Photos/BookNotes`.
@@ -37,7 +64,7 @@ Notes:
 - `MSYS_NO_PATHCONV=1` is required. Without it, Git Bash rewrites `/out` into a Windows path and Docker fails with `invalid mode`.
 - `~/.local/bin` must be on PATH.
 
-### 2. Copy the skill
+### Step 2: Copy the skill
 
 Run in Git Bash:
 
@@ -51,7 +78,7 @@ Notes:
 - If the Synology path differs on this machine, edit `inboxRoot` in
   `~/.claude/skills/book-notes/config.json`.
 
-### 3. Connect to Anytype (once per machine)
+### Step 3: Connect to Anytype (once per machine)
 
 This creates a new API key for this machine and stores it in `~/.claude/skills/book-notes/.env`.
 The key is never printed, and `.env` is gitignored both by the skill and by this repo's `*.env` rule.
@@ -67,7 +94,7 @@ bash scripts/book-notes.sh setup space <space_id>
 
 Or ask Claude: "set up the book-notes skill". It runs the same steps and asks for the code.
 
-### 4. Verify
+### Step 4: Verify
 
 ```bash
 bash ~/.claude/skills/book-notes/scripts/book-notes.sh setup status
