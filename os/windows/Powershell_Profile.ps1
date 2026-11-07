@@ -46,6 +46,39 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 }
 
+# Maintenance nag: one yellow line at shell start naming overdue tasks. `maint` prompts y/N per
+# overdue task, runs it, and stamps it. Declining doesn't stamp, so it nags again next shell.
+$MaintDays = 5
+$Maint = [ordered]@{
+  'dotnetup self'   = { dotnetup self update }    # first: self-update locks other dotnetup commands
+  'dotnetup update' = { dotnetup update }         # tracked SDKs + runtimes
+  'winget'          = { winget upgrade --all }
+  'choco'           = { sudo choco upgrade all -y }   # UAC prompt; choco owns vscode/git/azure-cli/etc.
+  'npm -g'          = { npm update -g }
+  'docker prune'    = { wsl docker system prune -f }
+  'wsl'             = { wsl --update }            # last: shuts down WSL, stopping containers w/o a restart policy
+}
+$MaintFile = Join-Path $HOME '.maint-stamps.json'
+
+function Get-MaintStamps { if (Test-Path $MaintFile) { Get-Content $MaintFile -Raw | ConvertFrom-Json -AsHashtable } else { @{} } }
+function Get-MaintDue {
+  $s = Get-MaintStamps
+  $Maint.Keys | Where-Object { -not $s[$_] -or ((Get-Date) - [datetime]$s[$_]).Days -ge $MaintDays }
+}
+function maint {
+  $s = Get-MaintStamps
+  foreach ($k in Get-MaintDue) {
+    if ((Read-Host "Run '$k'? [y/N]") -eq 'y') {
+      $global:LASTEXITCODE = 0
+      & $Maint[$k]
+      if ($LASTEXITCODE -eq 0) { $s[$k] = (Get-Date).ToString('o') } else { Write-Host "'$k' failed ($LASTEXITCODE); not stamped" -ForegroundColor Red }
+    }
+  }
+  $s | ConvertTo-Json | Set-Content $MaintFile
+}
+
+if ($due = Get-MaintDue) { Write-Host "🔧 Maintenance due: $($due -join ', ') (run 'maint')" -ForegroundColor Yellow }
+
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
